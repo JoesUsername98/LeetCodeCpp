@@ -4,6 +4,7 @@
 #include <iostream>
 #include <numeric> 
 #include <unordered_set> 
+#include <map> 
 
 #include "leetcode.h"
 
@@ -33,5 +34,18 @@ namespace leetcode
                 answer[1].push_back(i);
 
         return answer;
+    }
+
+    bool uniqueOccurrences(vector<int>& arr) 
+    {
+        map<int, int> occMap;
+        for (const auto& item : arr)
+            ++occMap[item];
+
+        unordered_set<int> occSet;
+        for (const auto& [key, occ] : occMap)
+            occSet.insert(occ);
+
+        return occSet.size() == occMap.size();
     }
 }

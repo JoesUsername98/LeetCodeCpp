@@ -44,3 +44,28 @@ TEST(findDifference, two)
 	EXPECT_EQ(expected, actual);
 	EXPECT_TRUE(true);
 }
+
+TEST(uniqueOccurrences, one)
+{
+	const bool expected = true;
+	std::vector<int> arr = { 1, 2, 2, 1, 1, 3};
+	const auto actual = leetcode::uniqueOccurrences(arr);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(uniqueOccurrences, two)
+{
+	const bool expected = false;
+	std::vector<int> arr = { 1, 2 };
+	const auto actual = leetcode::uniqueOccurrences(arr);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(uniqueOccurrences, three)
+{
+	const bool expected = true;
+	std::vector<int> arr = { -3, 0, 1, -3, 1, 1, 1, -3, 10, 0 };
+	const auto actual = leetcode::uniqueOccurrences(arr);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
