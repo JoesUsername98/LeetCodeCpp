@@ -12,4 +12,6 @@ namespace leetcode
     extern LEETCODE_API vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2);
 
     extern LEETCODE_API bool uniqueOccurrences(vector<int>& arr);
+
+    extern LEETCODE_API bool closeStrings(string word1, string word2);
 }

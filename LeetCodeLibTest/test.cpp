@@ -69,3 +69,49 @@ TEST(uniqueOccurrences, three)
 	EXPECT_EQ(expected, actual);
 	EXPECT_TRUE(true);
 }
+
+TEST(closeStrings, one)
+{
+	const bool expected = true;
+	std::string word1 = "abc";
+	std::string word2 = "bca";
+	const auto actual = leetcode::closeStrings(word1, word2);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(closeStrings, two)
+{
+	const bool expected = false;
+	std::string word1 = "a";
+	std::string word2 = "aa";
+	const auto actual = leetcode::closeStrings(word1, word2);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(closeStrings, three)
+{
+	const bool expected = true;
+	std::string word1 = "cabbba";
+	std::string word2 = "abbccc";
+	const auto actual = leetcode::closeStrings(word1, word2);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(closeStrings, four)
+{
+	const bool expected = false;
+	std::string word1 = "uau";
+	std::string word2 = "ssx";
+	const auto actual = leetcode::closeStrings(word1, word2);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(closeStrings, five)
+{
+	const bool expected = false;
+	std::string word1 = "aaabbbbccddeeeeefffff";
+	std::string word2 = "aaaaabbcccdddeeeeffff";
+	const auto actual = leetcode::closeStrings(word1, word2);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}

@@ -5,6 +5,7 @@
 #include <numeric> 
 #include <unordered_set> 
 #include <map> 
+#include <algorithm> 
 
 #include "leetcode.h"
 
@@ -48,4 +49,64 @@ namespace leetcode
 
         return occSet.size() == occMap.size();
     }
+
+    bool closeStrings(string word1, string word2)
+    {
+        /*
+        if (word1.size() != word2.size())
+            return false;
+
+        map<char, int> occMap1;
+        for (const auto& item : word1)
+            ++occMap1[item];
+
+        vector<int> occVec1;
+        for (const auto& [key, occ] : occMap1)
+            occVec1.push_back(occ);
+
+        map<char, int> occMap2;
+        for (const auto& item : word2)
+        {
+            ++occMap2[item];
+            if (occMap1.find(item) == occMap1.cend())
+                return false; 
+        }
+
+        vector<int> occVec2;
+        for (const auto& [key, occ] : occMap2)
+            occVec2.push_back(occ);
+
+        std::sort(occVec1.begin(), occVec1.end());
+        std::sort(occVec2.begin(), occVec2.end());
+
+        return occVec2.size() == occVec1.size() &&
+            std::equal(occVec1.begin(), occVec1.end(), occVec2.begin());
+        */
+        // By understanding that there are only 26 letters in the alphabet we can replace the set and map with a vector...
+        if (word1.size() != word2.size())
+            return false;
+        
+        std::vector<int> freq1(26, 0), freq2(26, 0); //Represents freq of each char in alphabet
+
+        for (char ch : word1) 
+            freq1[ch - 'a']++;
+
+        for (char ch : word2) 
+            freq2[ch - 'a']++;
+
+        //ensure that the set of chars are equal.
+        for (int i = 0; i < 26; i++) 
+            if ((freq1[i] && !freq2[i]) || (!freq1[i] && freq2[i])) 
+                return false;
+
+        std::sort(freq1.begin(), freq1.end()); std::sort(freq2.begin(), freq2.end());
+
+        //ensure that the set of chars freqs are equal - char independant.
+        for (int i = 0; i < 26; i++) 
+            if (freq1[i] != freq2[i]) 
+                return false;
+
+        return true;
+    }
+
 }
