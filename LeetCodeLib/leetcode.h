@@ -7,5 +7,7 @@
 using namespace std;
 namespace leetcode
 {
-    extern "C" LEETCODE_API int pivotIndex(vector<int>&nums);
+    extern LEETCODE_API int pivotIndex(vector<int>&nums);
+
+    extern LEETCODE_API vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2);
 }

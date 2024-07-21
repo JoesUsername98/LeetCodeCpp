@@ -1,7 +1,6 @@
 #include "pch.h"
 #include "../LeetCodeLib/leetcode.h"
 
-
 TEST(pivotIndex, one)
 {
 	const int expected = 3;
@@ -10,7 +9,6 @@ TEST(pivotIndex, one)
 	EXPECT_EQ(expected, actual);
 	EXPECT_TRUE(true);
 }
-
 TEST(pivotIndex, two)
 {
 	const int expected = -1;
@@ -19,12 +17,30 @@ TEST(pivotIndex, two)
 	EXPECT_EQ(expected, actual);
 	EXPECT_TRUE(true);
 }
-
 TEST(pivotIndex, three)
 {
 	const int expected = 0;
 	std::vector<int> input = { 2,1,-1 };
 	const int actual = leetcode::pivotIndex(input);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+
+TEST(findDifference, one)
+{
+	const vector<vector<int>> expected = { {1, 3} ,{4, 6} };
+	std::vector<int> nums1 = {1, 2, 3};
+	std::vector<int> nums2 = {2, 4, 6};
+	const vector<vector<int>> actual = leetcode::findDifference(nums1, nums2);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(findDifference, two)
+{
+	const vector<vector<int>> expected = { {3} ,{} };
+	std::vector<int> nums1 = { 1, 2, 3, 3 };
+	std::vector<int> nums2 = { 1, 1, 2, 2 };
+	const vector<vector<int>> actual = leetcode::findDifference(nums1, nums2);
 	EXPECT_EQ(expected, actual);
 	EXPECT_TRUE(true);
 }
