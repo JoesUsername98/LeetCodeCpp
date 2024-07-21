@@ -115,3 +115,42 @@ TEST(closeStrings, five)
 	EXPECT_EQ(expected, actual);
 	EXPECT_TRUE(true);
 }
+
+TEST(equalPairs, one)
+{
+	const int expected = 1;
+	vector<vector<int>> grid = {	{3, 2, 1} , 
+									{1, 7, 6} ,
+									{2, 7, 7} };
+	const auto actual = leetcode::equalPairs(grid);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(equalPairs, two)
+{
+	const int expected = 3;
+	vector<vector<int>> grid = {	{3, 1, 2, 2} , 
+									{1, 4, 4, 5} , 
+									{2, 4, 2, 2} , 
+									{2, 4, 2, 2} };
+	const auto actual = leetcode::equalPairs(grid);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(equalPairs, three)
+{
+	const int expected = 4;
+	vector<vector<int>> grid = {{13, 13}, { 13, 13 }};
+	const auto actual = leetcode::equalPairs(grid);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(equalPairs, four)
+{
+	const int expected = 48;
+	vector<vector<int>> grid = { {3, 3, 3, 6, 18, 3, 3, 3, 3, 3}, {3, 3, 3, 3, 1, 3, 3, 3, 3, 3}, {3, 3, 3, 3, 1, 3, 3, 3, 3, 3}, {3, 3, 3, 3, 1, 3, 3, 3, 3, 3}, {1, 1, 1, 11, 19, 1, 1, 1, 1, 1}, {3, 3, 3, 18, 19, 3, 3, 3, 3, 3}, {3, 3, 3, 3, 1, 3, 3, 3, 3, 3}, {3, 3, 3, 3, 1, 3, 3, 3, 3, 3}, {3, 3, 3, 1, 6, 3, 3, 3, 3, 3}, {3, 3, 3, 3, 1, 3, 3, 3, 3, 3} };
+	const auto actual = leetcode::equalPairs(grid);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+

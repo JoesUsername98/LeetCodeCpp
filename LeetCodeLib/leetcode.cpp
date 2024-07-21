@@ -4,6 +4,8 @@
 #include <iostream>
 #include <numeric> 
 #include <unordered_set> 
+#include <unordered_map> 
+#include <set> 
 #include <map> 
 #include <algorithm> 
 
@@ -109,4 +111,37 @@ namespace leetcode
         return true;
     }
 
+    int equalPairs(vector<vector<int>>& grid) 
+    {
+        int count = 0;
+        set<vector<int>> uniqueRows;
+        unordered_map<int, vector<int>> dupeRows;
+
+        for (int i = 0; i < grid.size(); ++i) 
+        {
+            // if the row already exists, then in case of a duplicate, it has to be counted multiple times
+            if (uniqueRows.find(grid[i]) != uniqueRows.end())
+                dupeRows[i] = grid[i];
+            uniqueRows.insert(grid[i]);
+        }
+        for (int i = 0; i < grid.size(); ++i) 
+        {
+            vector<int> col;
+            for (int j = 0; j < grid.size(); ++j) 
+                col.push_back(grid[j][i]);
+           
+            if (uniqueRows.find(col) == uniqueRows.end())
+                continue;
+
+            //if col in uniqueRow increment
+            ++count; 
+
+            //  iterate through dupe unordered_map to add duplicate rows
+            for (const auto& [iRow, row] : dupeRows)
+                if (row == col)
+                    ++count;
+        }
+
+        return count;
+    }
 }
