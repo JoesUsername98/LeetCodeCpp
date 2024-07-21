@@ -169,4 +169,46 @@ namespace leetcode
 
         return s;
     }
+
+    vector<int> asteroidCollision(vector<int>& asteroids)
+    {
+        for (int i = 0, j = 1; i >= 0 && j < asteroids.size(); )
+        {
+            if (!(asteroids[i] > 0 && asteroids[j] < 0))
+            { //No Collision
+                i++;
+                j++;
+                continue;
+            }
+            else if (asteroids[i] + asteroids[j] == 0) //perfect collision
+            {
+                asteroids.erase(asteroids.begin() + j);
+                asteroids.erase(asteroids.begin() + i);
+                if (j == asteroids.size() || i > 0)
+                {
+                    --j;
+                    --i;
+                }
+                continue;
+            }
+            else if (asteroids[i] + asteroids[j] > 0) //rhs explodes
+            {
+                asteroids.erase(asteroids.begin() + j);
+                if (j == asteroids.size() || i > 0)
+                {
+                    --j;
+                    --i;
+                }
+                continue;
+            }
+
+            asteroids.erase(asteroids.begin() + i); //lhs explodes
+            if (i > 0 && j > i)
+            {
+                j--;
+                i--;
+            }
+        }
+        return asteroids;
+    }
 }

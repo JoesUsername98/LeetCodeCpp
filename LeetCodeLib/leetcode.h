@@ -18,4 +18,6 @@ namespace leetcode
     extern LEETCODE_API int equalPairs(vector<vector<int>>& grid);
 
     extern LEETCODE_API string removeStars(string s);
+
+    extern LEETCODE_API vector<int> asteroidCollision(vector<int>& asteroids);
 }

@@ -178,3 +178,76 @@ TEST(removeStars, three)
 	EXPECT_EQ(expected, actual);
 	EXPECT_TRUE(true);
 }
+
+TEST(asteroidCollision, one)
+{
+	const vector<int> expected = { 5,10 };
+	vector<int> asteroids = { 5,10,-5 };
+	const auto actual = leetcode::asteroidCollision(asteroids);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(asteroidCollision, two)
+{
+	const vector<int> expected = {};
+	vector<int> asteroids = { 8,-8 };
+	const auto actual = leetcode::asteroidCollision(asteroids);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(asteroidCollision, three)
+{
+	const vector<int> expected = { 10 };
+	vector<int> asteroids = { 10,2,-5 };
+	const auto actual = leetcode::asteroidCollision(asteroids);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(asteroidCollision, four)
+{
+	const vector<int> expected = { -2, -1, 1, 2 };
+	vector<int> asteroids = { -2, -1, 1, 2 };
+	const auto actual = leetcode::asteroidCollision(asteroids);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(asteroidCollision, five)
+{
+	const vector<int> expected = { -2 };
+	vector<int> asteroids = { -2,2,-1,-2 };
+	const auto actual = leetcode::asteroidCollision(asteroids);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(asteroidCollision, six)
+{
+	const vector<int> expected = { -2,-2,-2 };
+	vector<int> asteroids = { 1, -2, -2, -2 };
+	const auto actual = leetcode::asteroidCollision(asteroids);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(asteroidCollision, seven)
+{
+	const vector<int> expected = { -2 };
+	vector<int> asteroids = { 1, -1, 1, -2 };
+	const auto actual = leetcode::asteroidCollision(asteroids);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(asteroidCollision, eight)
+{
+	const vector<int> expected = { -2 };
+	vector<int> asteroids = { 1, 1, -1, -2 };
+	const auto actual = leetcode::asteroidCollision(asteroids);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(asteroidCollision, nine)
+{
+	const vector<int> expected = { -3,-8,-4,5,8,4};
+	vector<int> asteroids = { -3,-8,-4,5,-2,8,10,-10,-7,4 };
+	const auto actual = leetcode::asteroidCollision(asteroids);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
