@@ -20,4 +20,6 @@ namespace leetcode
     extern LEETCODE_API string removeStars(string s);
 
     extern LEETCODE_API vector<int> asteroidCollision(vector<int>& asteroids);
+
+    extern LEETCODE_API string decodeString(string s);
 }

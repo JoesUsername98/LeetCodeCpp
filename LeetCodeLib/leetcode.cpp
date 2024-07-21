@@ -7,6 +7,7 @@
 #include <unordered_map> 
 #include <set> 
 #include <map> 
+#include <stack>
 #include <algorithm> 
 
 #include "leetcode.h"
@@ -210,5 +211,37 @@ namespace leetcode
             }
         }
         return asteroids;
+    }
+
+    string decodeString(string s) 
+    {
+        stack<uint16_t> numStack;
+        stack<std::string> subStrStack;
+        std::string answer = "";
+        uint16_t n = 0;
+        for (char c : s) 
+        {
+            if (isdigit(c)) //start new op
+                n = n * 10 + c - '0'; // calc n
+            else if (c == '[') // finish number - start characters
+            {
+                numStack.push(n);
+                n = 0;
+                subStrStack.push(answer); // clear subStr
+                answer.clear();
+            }
+            else if (c == ']') // finish characters of last op
+            {
+                uint16_t k = numStack.top(); numStack.pop();
+                std::string temp = answer;
+                answer = subStrStack.top(); subStrStack.pop();
+                while (k-- > 0) 
+                    answer += temp;
+            }
+            else  // add characters  
+                answer += c;
+        }
+
+        return answer;
     }
 }

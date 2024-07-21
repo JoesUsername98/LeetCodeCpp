@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "../LeetCodeLib/leetcode.h"
 
+#pragma region pivotIndex
 TEST(pivotIndex, one)
 {
 	const int expected = 3;
@@ -25,7 +26,8 @@ TEST(pivotIndex, three)
 	EXPECT_EQ(expected, actual);
 	EXPECT_TRUE(true);
 }
-
+#pragma endregion
+#pragma region findDifference
 TEST(findDifference, one)
 {
 	const vector<vector<int>> expected = { {1, 3} ,{4, 6} };
@@ -44,7 +46,8 @@ TEST(findDifference, two)
 	EXPECT_EQ(expected, actual);
 	EXPECT_TRUE(true);
 }
-
+#pragma endregion
+#pragma region uniqueOccurrences
 TEST(uniqueOccurrences, one)
 {
 	const bool expected = true;
@@ -69,7 +72,8 @@ TEST(uniqueOccurrences, three)
 	EXPECT_EQ(expected, actual);
 	EXPECT_TRUE(true);
 }
-
+#pragma endregion
+#pragma region closeStrings
 TEST(closeStrings, one)
 {
 	const bool expected = true;
@@ -115,7 +119,8 @@ TEST(closeStrings, five)
 	EXPECT_EQ(expected, actual);
 	EXPECT_TRUE(true);
 }
-
+#pragma endregion
+#pragma region equalPairs
 TEST(equalPairs, one)
 {
 	const int expected = 1;
@@ -153,7 +158,8 @@ TEST(equalPairs, four)
 	EXPECT_EQ(expected, actual);
 	EXPECT_TRUE(true);
 }
-
+#pragma endregion
+#pragma region removeStars
 TEST(removeStars, one)
 {
 	const std::string expected = "lecoe";
@@ -178,7 +184,8 @@ TEST(removeStars, three)
 	EXPECT_EQ(expected, actual);
 	EXPECT_TRUE(true);
 }
-
+#pragma endregion
+#pragma region asteroidCollision
 TEST(asteroidCollision, one)
 {
 	const vector<int> expected = { 5,10 };
@@ -251,3 +258,30 @@ TEST(asteroidCollision, nine)
 	EXPECT_EQ(expected, actual);
 	EXPECT_TRUE(true);
 }
+#pragma endregion
+#pragma region decodeString
+TEST(decodeString, one)
+{
+	const std::string expected = "aaabcbc";
+	std::string s = "3[a]2[bc]";
+	const auto actual = leetcode::decodeString(s);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(decodeString, two)
+{
+	const std::string expected = "accaccacc";
+	std::string s = "3[a2[c]]";
+	const auto actual = leetcode::decodeString(s);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(decodeString, three)
+{
+	const std::string expected = "abcabccdcdcdef";
+	std::string s = "2[abc]3[cd]ef";
+	const auto actual = leetcode::decodeString(s);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+#pragma endregion
