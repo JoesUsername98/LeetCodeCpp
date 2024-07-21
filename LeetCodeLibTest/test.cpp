@@ -154,3 +154,27 @@ TEST(equalPairs, four)
 	EXPECT_TRUE(true);
 }
 
+TEST(removeStars, one)
+{
+	const std::string expected = "lecoe";
+	std::string s = "leet**cod*e"; //
+	const auto actual = leetcode::removeStars(s);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(removeStars, two)
+{
+	const std::string expected = "";
+	std::string s = "erase*****";
+	const auto actual = leetcode::removeStars(s);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}
+TEST(removeStars, three)
+{
+	const std::string expected = "a";
+	std::string s = "abb*cdfg*****x*";
+	const auto actual = leetcode::removeStars(s);
+	EXPECT_EQ(expected, actual);
+	EXPECT_TRUE(true);
+}

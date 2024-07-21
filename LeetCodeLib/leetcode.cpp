@@ -144,4 +144,29 @@ namespace leetcode
 
         return count;
     }
+
+    string removeStars(string s) 
+    {
+        std::vector<std::pair<int, int>> removes;
+        for (int it = s.size() - 1; it >=0; --it)
+        {
+            if (s[it] != '*')
+                continue;
+
+            if (removes.size() == 0 ) 
+                removes.push_back(std::make_pair(it, 1));
+            else if (removes.back().first - removes.back().second > it)
+                removes.push_back(std::make_pair(it, 1));
+            else if (removes.back().first - removes.back().second <= it )
+            {
+                --removes.back().first; 
+                ++removes.back().second;
+            }
+        }
+
+        for (const auto& [idx, len] : removes) 
+            s.erase(idx - len, 2* len);
+
+        return s;
+    }
 }

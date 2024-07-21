@@ -16,4 +16,6 @@ namespace leetcode
     extern LEETCODE_API bool closeStrings(string word1, string word2);
 
     extern LEETCODE_API int equalPairs(vector<vector<int>>& grid);
+
+    extern LEETCODE_API string removeStars(string s);
 }
