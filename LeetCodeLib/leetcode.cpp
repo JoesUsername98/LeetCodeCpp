@@ -244,4 +244,13 @@ namespace leetcode
 
         return answer;
     }
+
+    int RecentCounter::ping(int t)
+    {
+        while ( !m_Q.empty() && m_Q.front() < t - WINDOW)
+            m_Q.pop();
+
+        m_Q.push(t);
+        return m_Q.size();
+    }
 }

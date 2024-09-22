@@ -1,6 +1,7 @@
 #pragma once
 #include "framework.h"
 #include <vector>
+#include <queue>
 
 #define LEETCODE_EXPORTS
 
@@ -22,4 +23,14 @@ namespace leetcode
     extern LEETCODE_API vector<int> asteroidCollision(vector<int>& asteroids);
 
     extern LEETCODE_API string decodeString(string s);
+
+    extern LEETCODE_API class RecentCounter 
+    {
+    private:
+        std::queue<int> m_Q = std::queue<int>();
+        const int WINDOW = 3000;
+
+    public:
+        LEETCODE_API int ping(int t);
+    };
 }

@@ -285,3 +285,13 @@ TEST(decodeString, three)
 	EXPECT_TRUE(true);
 }
 #pragma endregion
+#pragma region RecentCounter
+TEST(RecentCounter, one)
+{
+	leetcode::RecentCounter cntr = leetcode::RecentCounter();
+	EXPECT_EQ( 1 , cntr.ping(1) );
+	EXPECT_EQ( 2 , cntr.ping(100) );
+	EXPECT_EQ( 3 , cntr.ping(3001));
+	EXPECT_EQ( 4 , cntr.ping(3001));
+}
+#pragma endregion
