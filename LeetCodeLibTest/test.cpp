@@ -295,3 +295,10 @@ TEST(RecentCounter, one)
 	EXPECT_EQ( 4 , cntr.ping(3001));
 }
 #pragma endregion
+#pragma region predictPartyVictory
+TEST(predictPartyVictory, one)
+{
+	EXPECT_EQ(leetcode::predictPartyVictory("RD"), "Radiant");
+	EXPECT_EQ(leetcode::predictPartyVictory("RDD"), "Dire");
+}
+#pragma endregion

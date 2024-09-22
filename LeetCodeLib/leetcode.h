@@ -33,4 +33,6 @@ namespace leetcode
     public:
         LEETCODE_API int ping(int t);
     };
+
+    extern LEETCODE_API string predictPartyVictory(string senate);
 }

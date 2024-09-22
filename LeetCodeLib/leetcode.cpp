@@ -253,4 +253,29 @@ namespace leetcode
         m_Q.push(t);
         return m_Q.size();
     }
+
+    string predictPartyVictory(string senate) 
+    {
+        std::queue<int> rad;
+        std::queue<int> dir;
+        int i = 0;
+        for (const char c : senate)
+            if (c == 'R')
+                rad.push(i++);
+            else
+                dir.push(i++);
+
+        while (!rad.empty() && !dir.empty())
+        {
+            if (rad.front() < dir.front())
+                rad.push(i++);
+            else
+                dir.push(i++);
+
+            rad.pop();
+            dir.pop();
+        }
+
+        return rad.empty() ? "Dire" : "Radiant";
+    }
 }
