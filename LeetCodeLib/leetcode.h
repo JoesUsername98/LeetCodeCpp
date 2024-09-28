@@ -44,5 +44,7 @@ namespace leetcode
         ListNode(int x, ListNode* next) : val(x), next(next) {}
     };
 
-    extern LEETCODE_API  ListNode* deleteMiddle(ListNode* head);
+    extern LEETCODE_API ListNode* deleteMiddle(ListNode* head);
+
+    extern LEETCODE_API ListNode* oddEvenList(ListNode* head);
 }

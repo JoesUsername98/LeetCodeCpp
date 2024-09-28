@@ -30,4 +30,13 @@ namespace testhelper
 
 		return head;
 	}
+
+	template <typename T>
+	vector<T> listToVec(leetcode::ListNode* head)
+	{
+		std::vector<int> actual;
+		for (leetcode::ListNode* curr = head; curr; curr = curr->next)
+			actual.push_back(curr->val);
+		return actual;
+	}
 }

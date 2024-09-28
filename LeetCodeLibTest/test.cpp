@@ -312,11 +312,8 @@ TEST(deleteMiddle, one)
 	leetcode::ListNode* head = testhelper::vecToList<int>(input);
 
 	leetcode::ListNode*  modifiedListHead = leetcode::deleteMiddle( head );
-	leetcode::ListNode* curr = modifiedListHead;
-	std::vector<int> actual;
-	for (leetcode::ListNode* curr = modifiedListHead; curr ; curr = curr->next)
-		actual.push_back( curr->val );
-	
+	std::vector<int> actual = testhelper::listToVec<int>( modifiedListHead );
+
 	EXPECT_EQ(actual, expected);
 }
 TEST(deleteMiddle, two)
@@ -326,10 +323,7 @@ TEST(deleteMiddle, two)
 	leetcode::ListNode* head = testhelper::vecToList<int>(input);
 
 	leetcode::ListNode* modifiedListHead = leetcode::deleteMiddle(head);
-	leetcode::ListNode* curr = modifiedListHead;
-	std::vector<int> actual;
-	for (leetcode::ListNode* curr = modifiedListHead; curr; curr = curr->next)
-		actual.push_back(curr->val);
+	std::vector<int> actual = testhelper::listToVec<int>(modifiedListHead);
 
 	EXPECT_EQ(actual, expected);
 }
@@ -340,10 +334,7 @@ TEST(deleteMiddle, three)
 	leetcode::ListNode* head = testhelper::vecToList<int>(input);
 
 	leetcode::ListNode* modifiedListHead = leetcode::deleteMiddle(head);
-	leetcode::ListNode* curr = modifiedListHead;
-	std::vector<int> actual;
-	for (leetcode::ListNode* curr = modifiedListHead; curr; curr = curr->next)
-		actual.push_back(curr->val);
+	std::vector<int> actual = testhelper::listToVec<int>(modifiedListHead);
 
 	EXPECT_EQ(actual, expected);
 }
@@ -354,6 +345,34 @@ TEST(deleteMiddle, four)
 	leetcode::ListNode* head = testhelper::vecToList<int>(input);
 
 	leetcode::ListNode* modifiedListHead = leetcode::deleteMiddle(head);
+	std::vector<int> actual = testhelper::listToVec<int>(modifiedListHead);
+
+	EXPECT_EQ(actual, expected);
+}
+#pragma endregion
+#pragma region oddEvenList
+TEST(oddEvenList, one)
+{
+	std::vector<int> input{ 1,2,3,4,5 };
+	std::vector<int> expected{ 1,3,5,2,4 };
+	leetcode::ListNode* head = testhelper::vecToList<int>(input);
+
+	leetcode::ListNode* modifiedListHead = leetcode::oddEvenList(head);
+	leetcode::ListNode* curr = modifiedListHead;
+	std::vector<int> actual;
+	for (leetcode::ListNode* curr = modifiedListHead; curr; curr = curr->next)
+		actual.push_back(curr->val);
+
+	EXPECT_EQ(actual, expected);
+}
+TEST(oddEvenList, two)
+{
+	std::vector<int> input{ 2,1,3,5,6,4,7 };
+	std::vector<int> expected{ 2,3,6,7,1,5,4 };
+	
+	leetcode::ListNode* head = testhelper::vecToList<int>(input);
+
+	leetcode::ListNode* modifiedListHead = leetcode::oddEvenList(head);
 	leetcode::ListNode* curr = modifiedListHead;
 	std::vector<int> actual;
 	for (leetcode::ListNode* curr = modifiedListHead; curr; curr = curr->next)
