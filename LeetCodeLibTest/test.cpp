@@ -358,10 +358,8 @@ TEST(oddEvenList, one)
 	leetcode::ListNode* head = testhelper::vecToList<int>(input);
 
 	leetcode::ListNode* modifiedListHead = leetcode::oddEvenList(head);
-	leetcode::ListNode* curr = modifiedListHead;
-	std::vector<int> actual;
-	for (leetcode::ListNode* curr = modifiedListHead; curr; curr = curr->next)
-		actual.push_back(curr->val);
+	std::vector<int> actual = testhelper::listToVec<int>(modifiedListHead);
+
 
 	EXPECT_EQ(actual, expected);
 }
@@ -373,10 +371,45 @@ TEST(oddEvenList, two)
 	leetcode::ListNode* head = testhelper::vecToList<int>(input);
 
 	leetcode::ListNode* modifiedListHead = leetcode::oddEvenList(head);
-	leetcode::ListNode* curr = modifiedListHead;
-	std::vector<int> actual;
-	for (leetcode::ListNode* curr = modifiedListHead; curr; curr = curr->next)
-		actual.push_back(curr->val);
+	std::vector<int> actual = testhelper::listToVec<int>(modifiedListHead);
+
+	EXPECT_EQ(actual, expected);
+}
+#pragma endregion
+#pragma region reverseList
+TEST(reverseList, one)
+{
+	std::vector<int> input{ 1,2,3,4,5 };
+	std::vector<int> expected{ 5,4,3,2,1 };
+	leetcode::ListNode* head = testhelper::vecToList<int>(input);
+
+	leetcode::ListNode* modifiedListHead = leetcode::reverseList(head);
+	std::vector<int> actual = testhelper::listToVec<int>(modifiedListHead);
+
+
+	EXPECT_EQ(actual, expected);
+}
+TEST(reverseList, two)
+{
+	std::vector<int> input{ 1,2 };
+	std::vector<int> expected{ 2,1 };
+
+	leetcode::ListNode* head = testhelper::vecToList<int>(input);
+
+	leetcode::ListNode* modifiedListHead = leetcode::reverseList(head);
+	std::vector<int> actual = testhelper::listToVec<int>(modifiedListHead);
+
+	EXPECT_EQ(actual, expected);
+}
+TEST(reverseList, tree)
+{
+	std::vector<int> input{  };
+	std::vector<int> expected{  };
+
+	leetcode::ListNode* head = testhelper::vecToList<int>(input);
+
+	leetcode::ListNode* modifiedListHead = leetcode::reverseList(head);
+	std::vector<int> actual = testhelper::listToVec<int>(modifiedListHead);
 
 	EXPECT_EQ(actual, expected);
 }

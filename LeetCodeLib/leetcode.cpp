@@ -335,4 +335,57 @@ namespace leetcode
         return head;
     }
 
+    ListNode* reverseList(ListNode* head)
+    {
+        if (!head || !head->next)
+            return head;
+
+//#define REVERSELIST_FAST
+#ifdef REVERSELIST_FAST
+        std::vector<int> valVec;
+        ListNode* curr = head;
+        while (curr)
+        {
+            valVec.push_back(curr->val);
+            curr = curr->next;
+        }
+        std::reverse(valVec.begin(), valVec.end());
+        curr = head;
+        auto it = valVec.begin();
+        while (curr)
+        {
+            curr->val = *it;
+            it++;
+            curr = curr->next;
+        }
+#endif
+#ifndef REVERSELIST_FAST // low memory
+        std::stack<ListNode*> reverseOrder;
+        ListNode* curr = head;
+        while (curr) 
+        {
+            reverseOrder.push(curr);
+            curr = curr->next;
+        }
+
+
+        ListNode* newHead = reverseOrder.top();
+        reverseOrder.pop();
+        newHead->next = reverseOrder.top();
+        ListNode* newHeadPtr = newHead->next;
+
+        while (reverseOrder.size()) 
+        {
+            newHeadPtr->next = reverseOrder.top();
+            newHeadPtr = newHeadPtr->next;
+            reverseOrder.pop();
+        }
+
+        newHeadPtr->next = nullptr;
+        head = newHead;
+#endif
+
+        return head;
+    }
+
 }
