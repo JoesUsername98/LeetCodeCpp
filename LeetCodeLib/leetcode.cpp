@@ -278,4 +278,40 @@ namespace leetcode
 
         return rad.empty() ? "Dire" : "Radiant";
     }
+
+    ListNode* deleteMiddle(ListNode* head)
+    {
+        if (!head->next)
+            return nullptr;
+
+        size_t sz = 1;
+        ListNode* curr = head;
+        while (curr->next)
+        {
+            sz++;
+            curr = curr->next;
+        }
+
+        if (sz == 1)
+        {
+            delete head->next;
+            head->next = nullptr;
+            return head;
+        }
+
+        size_t middle = sz / 2;
+        sz = 0;
+        curr = head; //pre middle
+        while (sz < middle - 1)
+        {
+            sz++;
+            curr = curr->next;
+        }
+
+        ListNode* newMiddle = curr->next->next;
+        delete curr->next;
+        curr->next = newMiddle;
+
+        return head;
+    }
 }

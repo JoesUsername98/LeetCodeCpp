@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "../LeetCodeLib/leetcode.h"
+#include "testhelper.h"
+
 
 #pragma region pivotIndex
 TEST(pivotIndex, one)
@@ -300,5 +302,63 @@ TEST(predictPartyVictory, one)
 {
 	EXPECT_EQ(leetcode::predictPartyVictory("RD"), "Radiant");
 	EXPECT_EQ(leetcode::predictPartyVictory("RDD"), "Dire");
+}
+#pragma endregion
+#pragma region deleteMiddle
+TEST(deleteMiddle, one)
+{
+	std::vector<int> input		{ 1,3,4,7,1,2,6 };
+	std::vector<int> expected	{ 1,3,4,1,2,6 };
+	leetcode::ListNode* head = testhelper::vecToList<int>(input);
+
+	leetcode::ListNode*  modifiedListHead = leetcode::deleteMiddle( head );
+	leetcode::ListNode* curr = modifiedListHead;
+	std::vector<int> actual;
+	for (leetcode::ListNode* curr = modifiedListHead; curr ; curr = curr->next)
+		actual.push_back( curr->val );
+	
+	EXPECT_EQ(actual, expected);
+}
+TEST(deleteMiddle, two)
+{
+	std::vector<int> input{ 1,2,3,4 };
+	std::vector<int> expected{ 1,2,4 };
+	leetcode::ListNode* head = testhelper::vecToList<int>(input);
+
+	leetcode::ListNode* modifiedListHead = leetcode::deleteMiddle(head);
+	leetcode::ListNode* curr = modifiedListHead;
+	std::vector<int> actual;
+	for (leetcode::ListNode* curr = modifiedListHead; curr; curr = curr->next)
+		actual.push_back(curr->val);
+
+	EXPECT_EQ(actual, expected);
+}
+TEST(deleteMiddle, three)
+{
+	std::vector<int> input{ 2,1 };
+	std::vector<int> expected{ 2 };
+	leetcode::ListNode* head = testhelper::vecToList<int>(input);
+
+	leetcode::ListNode* modifiedListHead = leetcode::deleteMiddle(head);
+	leetcode::ListNode* curr = modifiedListHead;
+	std::vector<int> actual;
+	for (leetcode::ListNode* curr = modifiedListHead; curr; curr = curr->next)
+		actual.push_back(curr->val);
+
+	EXPECT_EQ(actual, expected);
+}
+TEST(deleteMiddle, four)
+{
+	std::vector<int> input{ 1 };
+	std::vector<int> expected{};
+	leetcode::ListNode* head = testhelper::vecToList<int>(input);
+
+	leetcode::ListNode* modifiedListHead = leetcode::deleteMiddle(head);
+	leetcode::ListNode* curr = modifiedListHead;
+	std::vector<int> actual;
+	for (leetcode::ListNode* curr = modifiedListHead; curr; curr = curr->next)
+		actual.push_back(curr->val);
+
+	EXPECT_EQ(actual, expected);
 }
 #pragma endregion

@@ -8,7 +8,7 @@
 using namespace std;
 namespace leetcode
 {
-    extern LEETCODE_API int pivotIndex(vector<int>&nums);
+    extern LEETCODE_API int pivotIndex(vector<int>& nums);
 
     extern LEETCODE_API vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2);
 
@@ -24,7 +24,7 @@ namespace leetcode
 
     extern LEETCODE_API string decodeString(string s);
 
-    extern LEETCODE_API class RecentCounter 
+    extern LEETCODE_API class RecentCounter
     {
     private:
         std::queue<int> m_Q = std::queue<int>();
@@ -35,4 +35,14 @@ namespace leetcode
     };
 
     extern LEETCODE_API string predictPartyVictory(string senate);
+
+    extern LEETCODE_API struct ListNode {
+        int val;
+        ListNode* next;
+        ListNode() : val(0), next(nullptr) {}
+        ListNode(int x) : val(x), next(nullptr) {}
+        ListNode(int x, ListNode* next) : val(x), next(next) {}
+    };
+
+    extern LEETCODE_API  ListNode* deleteMiddle(ListNode* head);
 }
