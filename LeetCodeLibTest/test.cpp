@@ -414,3 +414,38 @@ TEST(reverseList, tree)
 	EXPECT_EQ(actual, expected);
 }
 #pragma endregion
+#pragma region pairSum
+TEST(pairSum, one)
+{
+	std::vector<int> input{ 5,4,2,1 };
+	int expected = 6;
+
+	leetcode::ListNode* head = testhelper::vecToList<int>(input);
+
+	int actual = leetcode::pairSum(head);
+
+	EXPECT_EQ(actual, expected);
+}
+TEST(pairSum, two)
+{
+	std::vector<int> input{ 4,2,2,3 };
+	int expected = 7;
+
+	leetcode::ListNode* head = testhelper::vecToList<int>(input);
+
+	int actual = leetcode::pairSum(head);
+
+	EXPECT_EQ(actual, expected);
+}
+TEST(pairSum, tree)
+{
+	std::vector<int> input{ 1,100000 };
+	int expected = 100001;
+
+	leetcode::ListNode* head = testhelper::vecToList<int>(input);
+
+	int actual = leetcode::pairSum(head);
+
+	EXPECT_EQ(actual, expected);
+}
+#pragma endregion

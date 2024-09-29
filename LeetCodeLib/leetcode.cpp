@@ -358,8 +358,7 @@ namespace leetcode
             it++;
             curr = curr->next;
         }
-#endif
-#ifndef REVERSELIST_FAST // low memory
+#else// low memory
         std::stack<ListNode*> reverseOrder;
         ListNode* curr = head;
         while (curr) 
@@ -374,7 +373,7 @@ namespace leetcode
         newHead->next = reverseOrder.top();
         ListNode* newHeadPtr = newHead->next;
 
-        while (reverseOrder.size()) 
+        while ( reverseOrder.size() ) 
         {
             newHeadPtr->next = reverseOrder.top();
             newHeadPtr = newHeadPtr->next;
@@ -388,4 +387,101 @@ namespace leetcode
         return head;
     }
 
+    ListNode* pairSum_splitList(ListNode* head) {
+        ListNode* slow = head;
+        ListNode* fast = head;
+        ListNode* prev = nullptr;
+        while (fast != nullptr && fast->next != nullptr) {
+            prev = slow;
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        prev->next = nullptr;
+        return slow;
+    }
+    ListNode* pairSum_reverseList(ListNode* head) {
+        ListNode* prev = nullptr;
+        ListNode* curr = head;
+        while (curr != nullptr) {
+            ListNode* next = curr->next;
+            curr->next = prev;
+            prev = curr;
+            curr = next;
+    }
+        return prev;
+    }
+
+    int pairSum(ListNode* head) 
+    {
+//#define PAIRSUM_NOREVERSE
+#ifdef PAIRSUM_NOREVERSE
+        std::deque<int> actual;
+        for (leetcode::ListNode* curr = head; curr; curr = curr->next)
+            actual.push_back(curr->val);
+
+        int maxPair = 0;
+        while (!actual.empty())
+        {
+            maxPair = max( maxPair, actual.front() + actual.back() );
+            actual.pop_back();
+            actual.pop_front();
+        }
+
+        return maxPair;
+#endif
+//#define PAIRSUM_CRAPREVERSE
+#ifdef PAIRSUM_CRAPREVERSE
+        std::stack<ListNode*> reverseOrder;
+        ListNode* fwdIt = head;
+        while (fwdIt)
+        {
+            reverseOrder.push(fwdIt);
+            fwdIt = fwdIt->next;
+        }
+        
+        const size_t halfway = reverseOrder.size() / 2;
+        ListNode* reverse = reverseOrder.top();
+        reverseOrder.pop();
+        reverse->next = reverseOrder.top();
+        ListNode* reverseIt = reverse->next;
+
+        while (reverseOrder.size() > halfway)
+        {
+            reverseIt->next = reverseOrder.top();
+            reverseIt = reverseIt->next;
+            reverseOrder.pop();
+        }
+
+        reverseIt->next = nullptr;
+        reverseIt = reverse;
+        fwdIt = head;
+
+        int ans = 0;
+        while (fwdIt && reverseIt)
+        {
+            ans = max(ans, fwdIt->val + reverseIt->val);
+            fwdIt = fwdIt->next;
+            reverseIt = reverseIt->next;
+        }
+
+        return ans;
+#endif
+
+#define PAIRSUM_GOODREVERSE
+#ifdef PAIRSUM_GOODREVERSE
+        if (head == nullptr || head->next == nullptr) return 0;
+        ListNode* secondHalf = pairSum_splitList(head);// spilt from second half
+        secondHalf = pairSum_reverseList(secondHalf);//reverse the second half
+        ListNode* firstHalf = head;
+        int result = INT_MIN;
+        while (firstHalf != nullptr && secondHalf != nullptr) {
+            int sum = firstHalf->val + secondHalf->val;
+            result = max(result, sum);
+            firstHalf = firstHalf->next;
+            secondHalf = secondHalf->next;
+        }
+        return result;
+#endif
+
+    }
 }

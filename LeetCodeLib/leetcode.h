@@ -49,4 +49,6 @@ namespace leetcode
     extern LEETCODE_API ListNode* oddEvenList(ListNode* head);
 
     extern LEETCODE_API ListNode* reverseList(ListNode* head);
+
+    extern LEETCODE_API int pairSum(ListNode* head);
 }
