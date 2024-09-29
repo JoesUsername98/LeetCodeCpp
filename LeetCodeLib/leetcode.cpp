@@ -410,7 +410,6 @@ namespace leetcode
     }
         return prev;
     }
-
     int pairSum(ListNode* head) 
     {
 //#define PAIRSUM_NOREVERSE
@@ -482,6 +481,33 @@ namespace leetcode
         }
         return result;
 #endif
-
     }
+
+#define MAXDEPTH_ATTEMPT_1
+#ifdef MAXDEPTH_ATTEMPT_1
+    int maxDepthRecur(TreeNode* root, int depthSoFar)
+    {
+        if (!root )
+            return depthSoFar - 1;
+        else if  (!root->left && !root->right) 
+            return depthSoFar;
+
+        return max(maxDepthRecur(root->left, depthSoFar + 1), maxDepthRecur(root->right, depthSoFar + 1));
+    }
+    int maxDepth(TreeNode* root)
+    {
+        return maxDepthRecur(root, 1);
+    }
+#endif
+#define MAXDEPTH_COPY
+#ifdef MAXDEPTH_COPY
+    int maxDepth(TreeNode* root)
+    {
+        if (!root) 
+            return 0;
+        return max(maxDepth(root->left), maxDepth(root->right)) + 1;
+    }
+
+#endif
+
 }

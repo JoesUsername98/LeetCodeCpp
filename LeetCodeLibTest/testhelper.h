@@ -1,29 +1,31 @@
 #pragma once
 #include "pch.h"
 #include "../LeetCodeLib/leetcode.h"
+#include <optional>
 
+using namespace leetcode;
 namespace testhelper
 {
 	template <typename T>
-	leetcode::ListNode* vecToList(const vector<T>& in)
+	ListNode* vecToList(const vector<T>& in)
 	{
-		leetcode::ListNode* head = nullptr;
-		leetcode::ListNode* tail = nullptr;
+		ListNode* head = nullptr;
+		ListNode* tail = nullptr;
 		for (T val : in)
 		{
 			if (!head)
 			{
-				head = new leetcode::ListNode(val);
+				head = new ListNode(val);
 				tail = head;
 			}
 			else if (head == tail)
 			{
-				tail = new leetcode::ListNode(val);
+				tail = new ListNode(val);
 				head->next = tail;
 			}
 			else
 			{
-				tail->next = new leetcode::ListNode(val);
+				tail->next = new ListNode(val);
 				tail = tail->next;
 			}
 		}
@@ -32,11 +34,53 @@ namespace testhelper
 	}
 
 	template <typename T>
-	vector<T> listToVec(leetcode::ListNode* head)
+	vector<T> listToVec(ListNode* head)
 	{
 		std::vector<int> actual;
-		for (leetcode::ListNode* curr = head; curr; curr = curr->next)
+		for (ListNode* curr = head; curr; curr = curr->next)
 			actual.push_back(curr->val);
 		return actual;
+	}
+
+
+	template <typename T>
+	TreeNode* vecToTree(const vector<optional<T>>& in)
+	{
+		TreeNode* root = nullptr;
+		TreeNode* it = nullptr;
+
+		bool lastBlank = false;
+		bool lastTwoBlank = false;
+		for (optional<T> node : in)
+		{
+			if( !root && node.has_value())
+			{
+				root = new TreeNode( node.value() );
+				it = root;
+				continue; 
+			}
+
+			if( node.has_value() )
+			{
+				lastBlank = false;
+
+				if ( !it->left )
+					it->left = new TreeNode( node.value() );
+				else if ( !it->right )
+					it->right = new TreeNode( node.value() );
+				else 
+				{
+					it->left->left = new TreeNode(node.value());
+					it = it->left;
+				}
+				continue;
+			}
+				
+			if ( !lastBlank ) 
+				lastBlank = true;
+			else if (lastBlank && !lastTwoBlank)
+				it = it->right;
+		}
+		return root;
 	}
 }

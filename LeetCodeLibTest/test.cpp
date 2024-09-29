@@ -449,3 +449,16 @@ TEST(pairSum, tree)
 	EXPECT_EQ(actual, expected);
 }
 #pragma endregion
+#pragma region maxDepth
+TEST(maxDepth, one)
+{
+	std::vector<std::optional<int>> input{ 3,9,20,std::optional<int>(),std::optional<int>(),15,7};
+	int expected = 3;
+
+	TreeNode* root = testhelper::vecToTree<int>(input);
+
+	int actual = leetcode::maxDepth(root);
+
+	EXPECT_EQ(actual, expected);
+}
+#pragma endregion
