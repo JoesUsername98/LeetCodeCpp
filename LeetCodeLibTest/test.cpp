@@ -537,15 +537,39 @@
 //
 //	EXPECT_EQ(actual, expected);
 //}
-TEST(pathSum3, three)
+//TEST(pathSum3, three)
+//{
+//	std::vector<std::optional<int>> input{ 1,nullopt,2,nullopt,3,nullopt,4,nullopt,5 };
+//	int target = 3;
+//	int expected = 2;
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//
+//	int actual = leetcode::pathSum3(root, target);
+//
+//	EXPECT_EQ(actual, expected);
+//}
+//#pragma endregion
+#pragma region longestZigZag
+TEST(longestZigZag, one)
 {
-	std::vector<std::optional<int>> input{ 1,nullopt,2,nullopt,3,nullopt,4,nullopt,5 };
-	int target = 3;
-	int expected = 2;
+	std::vector<std::optional<int>> input{ 1,nullopt,1,1,1,nullopt,nullopt,1,1,nullopt,1,nullopt,nullopt,nullopt,1 };
+	int expected = 3;
 
 	TreeNode* root = testhelper::vecToTree<int>(input);
 
-	int actual = leetcode::pathSum3(root, target);
+	int actual = leetcode::longestZigZag(root);
+
+	EXPECT_EQ(actual, expected);
+}
+TEST(longestZigZag, two)
+{
+	std::vector<std::optional<int>> input{ 1,1,1,nullopt,1,nullopt,nullopt,1,1,nullopt,1 };
+	int expected = 4;
+
+	TreeNode* root = testhelper::vecToTree<int>(input);
+
+	int actual = leetcode::longestZigZag(root);
 
 	EXPECT_EQ(actual, expected);
 }

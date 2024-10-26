@@ -607,4 +607,20 @@ namespace leetcode
         unordered_map<long, int>  map{ {0l,1} };
         return pathSum3Helper(root, 0, targetSum, map);
     }
+
+    int longestZigZagRecur(TreeNode* root, bool moveLeft, int count)
+    {
+        if (!root)
+            return count;
+        
+        TreeNode* next = moveLeft ? root->right : root->left;
+        TreeNode* alt = moveLeft ? root->left : root->right;
+  
+        return max(count, max( longestZigZagRecur( next, !moveLeft, count + 1), longestZigZagRecur( alt, moveLeft, 0) ) );
+    }
+
+    int longestZigZag(TreeNode* root)
+    {
+        return max(longestZigZagRecur(root->left, true, 0), longestZigZagRecur(root->right, false, 0));
+    }
 }

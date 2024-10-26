@@ -68,4 +68,6 @@ namespace leetcode
     extern LEETCODE_API int goodNodes(TreeNode* root);
 
     extern LEETCODE_API int pathSum3(TreeNode* root, int targetSum);
+
+    extern LEETCODE_API int longestZigZag(TreeNode* root);
 }
