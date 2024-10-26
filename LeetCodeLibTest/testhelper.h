@@ -42,45 +42,36 @@ namespace testhelper
 		return actual;
 	}
 
-
 	template <typename T>
 	TreeNode* vecToTree(const vector<optional<T>>& in)
 	{
-		TreeNode* root = nullptr;
-		TreeNode* it = nullptr;
+		if (in.empty() || !in[0].has_value()) return nullptr;
 
-		bool lastBlank = false;
-		bool lastTwoBlank = false;
-		for (optional<T> node : in)
-		{
-			if( !root && node.has_value())
-			{
-				root = new TreeNode( node.value() );
-				it = root;
-				continue; 
+		TreeNode* root = new TreeNode(in[0].value());
+		queue<TreeNode*> q;
+		q.push(root);
+
+		int i = 1;
+		while (i < in.size()) {
+			TreeNode* current = q.front();
+			q.pop();
+
+			// Process the left child
+			if (i < in.size() && in[i].has_value()) {
+				current->left = new TreeNode(in[i].value());
+				q.push(current->left);
 			}
+			i++;
 
-			if( node.has_value() )
-			{
-				lastBlank = false;
-
-				if ( !it->left )
-					it->left = new TreeNode( node.value() );
-				else if ( !it->right )
-					it->right = new TreeNode( node.value() );
-				else 
-				{
-					it->left->left = new TreeNode(node.value());
-					it = it->left;
-				}
-				continue;
+			// Process the right child
+			if (i < in.size() && in[i].has_value()) {
+				current->right = new TreeNode(in[i].value());
+				q.push(current->right);
 			}
-				
-			if ( !lastBlank ) 
-				lastBlank = true;
-			else if (lastBlank && !lastTwoBlank)
-				it = it->right;
+			i++;
 		}
+
 		return root;
 	}
+
 }

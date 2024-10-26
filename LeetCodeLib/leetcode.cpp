@@ -483,7 +483,6 @@ namespace leetcode
 #endif
     }
 
-#define MAXDEPTH_ATTEMPT_1
 #ifdef MAXDEPTH_ATTEMPT_1
     int maxDepthRecur(TreeNode* root, int depthSoFar)
     {
@@ -507,7 +506,82 @@ namespace leetcode
             return 0;
         return max(maxDepth(root->left), maxDepth(root->right)) + 1;
     }
-
 #endif
+    void inorder(TreeNode* root, vector<int>& result)
+    {
+        if (root == NULL)
+            return;
+        inorder(root->left, result);
+        if (root->left == NULL && root->right == NULL)
+        {
+            result.push_back(root->val);
+        }
+        inorder(root->right, result);
+    }
+
+    bool leafSimilar(TreeNode* root1, TreeNode* root2)
+    {
+        vector<int>v1;
+        vector<int>v2;
+        inorder(root1, v1);
+        inorder(root2, v2);
+        if (v1.size() != v2.size())
+            return 0;
+        return v2 == v1;
+    }
+
+
+#ifdef GOOD_NODES_RECCUR
+    int goodNodesRecurr(TreeNode* root, int maxInPath )
+    {
+        if (!root)
+            return 0;
+
+        int result = 0;
+        if (root->right)
+        {
+            if (root->right->val >= maxInPath )
+                ++result;
+            result += goodNodesRecurr(root->right, max( root->right->val, maxInPath ) );
+        }
+        if (root->left)
+        {
+            if (root->left->val >= maxInPath )
+                ++result;
+            result += goodNodesRecurr(root->left, max(root->left->val, maxInPath) );
+        }
+
+        return result;
+    }
+
+    int goodNodes(TreeNode* root) 
+    {
+        return goodNodesRecurr( root, root->val ) + 1;
+    }
+#endif
+
+    int goodNodes(TreeNode* root)
+    {
+        std::deque<std::pair<TreeNode*, int>> q;
+        q.emplace_back(root->left, root->val);
+        q.emplace_back(root->right, root->val);
+
+        int result = 1;
+        while (!q.empty()) 
+        {
+            std::pair<TreeNode*, int> nodeAndMax = q.front();
+            q.pop_front();
+            
+            if (!nodeAndMax.first)
+                continue;
+
+            if (nodeAndMax.first->val >= nodeAndMax.second)
+                ++result;
+
+            q.emplace_back(nodeAndMax.first->left, max(nodeAndMax.first->val, nodeAndMax.second) );
+            q.emplace_back(nodeAndMax.first->right, max(nodeAndMax.first->val, nodeAndMax.second) );
+        }
+        return result;
+    }
 
 }
