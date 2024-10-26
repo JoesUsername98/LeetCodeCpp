@@ -584,4 +584,27 @@ namespace leetcode
         return result;
     }
 
+    int pathSum3Helper(TreeNode* root, long runningSum, int target, unordered_map<long,int>& map)
+    {
+        if (!root)
+            return 0;
+
+        int count = 0;
+        runningSum += root->val;
+        if (map.find(runningSum - target) != map.cend())
+            count += map[runningSum - target];
+        map[runningSum]++;
+
+        count += pathSum3Helper(root->left, runningSum, target, map);
+        count += pathSum3Helper(root->right, runningSum, target, map);
+
+        map[runningSum]--;
+        return count;
+    }
+
+    int pathSum3(TreeNode* root, int targetSum)
+    {
+        unordered_map<long, int>  map{ {0l,1} };
+        return pathSum3Helper(root, 0, targetSum, map);
+    }
 }

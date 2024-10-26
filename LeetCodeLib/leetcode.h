@@ -66,4 +66,6 @@ namespace leetcode
     extern LEETCODE_API bool leafSimilar(TreeNode* root1, TreeNode* root2);
 
     extern LEETCODE_API int goodNodes(TreeNode* root);
+
+    extern LEETCODE_API int pathSum3(TreeNode* root, int targetSum);
 }

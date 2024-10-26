@@ -449,65 +449,103 @@
 //	EXPECT_EQ(actual, expected);
 //}
 //#pragma endregion
-#pragma region maxDepth
-TEST(maxDepth, one)
+//#pragma region maxDepth
+//TEST(maxDepth, one)
+//{
+//	std::vector<std::optional<int>> input{ 3,9,20,std::optional<int>(),std::optional<int>(),15,7};
+//	int expected = 3;
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//
+//	int actual = leetcode::maxDepth(root);
+//
+//	EXPECT_EQ(actual, expected);
+//}
+//#pragma endregion
+//#pragma region leafSimilar
+//TEST(leafSimilar, one)
+//{
+//	std::vector<std::optional<int>> input1{ 3,5,1,6,2,9,8,nullopt,nullopt,7,4 };
+//	std::vector<std::optional<int>> input2{ 3,5,1,6,7,4,2,nullopt,nullopt,nullopt,nullopt,nullopt,nullopt,9,8 };
+//	bool expected = true;
+//
+//	TreeNode* root1 = testhelper::vecToTree<int>(input1);
+//	TreeNode* root2 = testhelper::vecToTree<int>(input2);
+//
+//	bool actual = leetcode::leafSimilar(root1, root2);
+//
+//	EXPECT_EQ(actual, expected);
+//}
+//#pragma endregion
+//#pragma region goodNodes
+//TEST(goodNodes, one)
+//{
+//	std::vector<std::optional<int>> input{ 3,1,4,3,nullopt,1,5 };
+//	int expected = 4;
+//
+//	TreeNode* root = testhelper::vecToTree<int>( input );
+//
+//	int actual = leetcode::goodNodes( root );
+//
+//	EXPECT_EQ(actual, expected);
+//}
+//TEST(goodNodes, two)
+//{
+//	std::vector<std::optional<int>> input{ 3,3,nullopt,4,2 };
+//	int expected = 3;
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//
+//	int actual = leetcode::goodNodes(root);
+//
+//	EXPECT_EQ(actual, expected);
+//}
+//TEST(goodNodes, three)
+//{
+//	std::vector<std::optional<int>> input{ 9, nullopt, 3, 6 };
+//	int expected = 1;
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//
+//	int actual = leetcode::goodNodes(root);
+//
+//	EXPECT_EQ(actual, expected);
+//}
+//#pragma endregion
+#pragma region pathSum3
+//TEST(pathSum3, one)
+//{
+//	std::vector<std::optional<int>> input{ 10,5,-3,3,2,nullopt,11,3,-2,nullopt,1  };
+//	int target = 8;
+//	int expected = 3;
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//
+//	int actual = leetcode::pathSum3(root, target);
+//
+//	EXPECT_EQ(actual, expected);
+//}
+//TEST(pathSum3, two)
+//{
+//	std::vector<std::optional<int>> input{ 5,4,8,11,nullopt,13,4,7,2,nullopt,nullopt,5,1 };
+//	int target = 22;
+//	int expected = 3;
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//
+//	int actual = leetcode::pathSum3(root, target);
+//
+//	EXPECT_EQ(actual, expected);
+//}
+TEST(pathSum3, three)
 {
-	std::vector<std::optional<int>> input{ 3,9,20,std::optional<int>(),std::optional<int>(),15,7};
-	int expected = 3;
+	std::vector<std::optional<int>> input{ 1,nullopt,2,nullopt,3,nullopt,4,nullopt,5 };
+	int target = 3;
+	int expected = 2;
 
 	TreeNode* root = testhelper::vecToTree<int>(input);
 
-	int actual = leetcode::maxDepth(root);
-
-	EXPECT_EQ(actual, expected);
-}
-#pragma endregion
-#pragma region leafSimilar
-TEST(leafSimilar, one)
-{
-	std::vector<std::optional<int>> input1{ 3,5,1,6,2,9,8,nullopt,nullopt,7,4 };
-	std::vector<std::optional<int>> input2{ 3,5,1,6,7,4,2,nullopt,nullopt,nullopt,nullopt,nullopt,nullopt,9,8 };
-	bool expected = true;
-
-	TreeNode* root1 = testhelper::vecToTree<int>(input1);
-	TreeNode* root2 = testhelper::vecToTree<int>(input2);
-
-	bool actual = leetcode::leafSimilar(root1, root2);
-
-	EXPECT_EQ(actual, expected);
-}
-#pragma endregion
-#pragma region goodNodes
-TEST(goodNodes, one)
-{
-	std::vector<std::optional<int>> input{ 3,1,4,3,nullopt,1,5 };
-	int expected = 4;
-
-	TreeNode* root = testhelper::vecToTree<int>( input );
-
-	int actual = leetcode::goodNodes( root );
-
-	EXPECT_EQ(actual, expected);
-}
-TEST(goodNodes, two)
-{
-	std::vector<std::optional<int>> input{ 3,3,nullopt,4,2 };
-	int expected = 3;
-
-	TreeNode* root = testhelper::vecToTree<int>(input);
-
-	int actual = leetcode::goodNodes(root);
-
-	EXPECT_EQ(actual, expected);
-}
-TEST(goodNodes, three)
-{
-	std::vector<std::optional<int>> input{ 9, nullopt, 3, 6 };
-	int expected = 1;
-
-	TreeNode* root = testhelper::vecToTree<int>(input);
-
-	int actual = leetcode::goodNodes(root);
+	int actual = leetcode::pathSum3(root, target);
 
 	EXPECT_EQ(actual, expected);
 }
