@@ -574,3 +574,37 @@ TEST(longestZigZag, two)
 	EXPECT_EQ(actual, expected);
 }
 #pragma endregion
+#pragma region lowestCommonAncestor
+TEST(lowestCommonAncestor, one )
+{
+	std::vector<std::optional<int>> input{ 3,5,1,6,2,0,8,nullopt,nullopt,7,4 };
+	int pVal = 5;
+	int qVal = 1;
+	int lcaVal = 3;
+
+	TreeNode* root = testhelper::vecToTree<int>(input);
+	TreeNode* q = testhelper::getNodeWithVal(root, qVal);
+	TreeNode* p = testhelper::getNodeWithVal(root, pVal);
+	TreeNode* expected = testhelper::getNodeWithVal(root, lcaVal);
+
+	TreeNode* actual = leetcode::lowestCommonAncestor(root, p, q);
+
+	EXPECT_EQ(actual->val, expected->val);
+}
+TEST(lowestCommonAncestor, two)
+{
+	std::vector<std::optional<int>> input{ 3,5,1,6,2,0,8,nullopt,nullopt,7,4 };
+	int pVal = 5;
+	int qVal = 4;
+	int lcaVal = 5;
+
+	TreeNode* root = testhelper::vecToTree<int>(input);
+	TreeNode* q = testhelper::getNodeWithVal(root, qVal);
+	TreeNode* p = testhelper::getNodeWithVal(root, pVal);
+	TreeNode* expected = testhelper::getNodeWithVal(root, lcaVal);
+
+	TreeNode* actual = leetcode::lowestCommonAncestor(root, p, q);
+
+	EXPECT_EQ(actual->val, expected->val);
+}
+#pragma endregion

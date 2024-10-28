@@ -74,4 +74,24 @@ namespace testhelper
 		return root;
 	}
 
+	template <typename T>
+	TreeNode* getNodeWithVal(TreeNode* root, T val)
+	{
+		if (!root)
+			return root;
+
+		if (root->val == val)
+			return root;
+
+		TreeNode* left = getNodeWithVal(root->left, val);
+		if (left)
+			return left;
+
+		TreeNode* right = getNodeWithVal(root->right, val);
+		if (right)
+			return right;
+
+		return nullptr;
+	}
+
 }
