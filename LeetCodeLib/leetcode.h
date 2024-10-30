@@ -72,4 +72,7 @@ namespace leetcode
     extern LEETCODE_API int longestZigZag(TreeNode* root);
 
     extern LEETCODE_API TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q);
+
+    extern LEETCODE_API vector<int> rightSideView(TreeNode* root);
+
 }

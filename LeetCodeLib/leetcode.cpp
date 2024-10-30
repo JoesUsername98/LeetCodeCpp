@@ -642,4 +642,68 @@ namespace leetcode
 
         return root;
     }
+
+    //vector<int> rightSideView(TreeNode* root)
+    //{
+    //    vector<int> rtn{};
+    //    deque<std::pair<TreeNode*, int>> q;
+    //    q.emplace_back(root, 1);
+
+
+    //    int currDepth = 0;
+    //    while (!q.empty())
+    //    {
+    //        TreeNode* currNode = q.front().first;
+
+    //        if (!currNode)
+    //        {
+    //            q.pop_front();
+    //            continue;
+    //        }
+
+    //        int tempDepth = q.front().second;
+
+    //        if (tempDepth > currDepth)
+    //        {
+    //            currDepth = tempDepth;
+    //            rtn.emplace_back(currNode->val);
+    //        }
+
+    //        q.pop_front();
+    //        if (currNode->left)
+    //            q.emplace_front(currNode->left, tempDepth + 1);
+    //        if (currNode->right)
+    //            q.emplace_front(currNode->right, tempDepth + 1);
+    //    }
+    //    return rtn;
+    //}
+
+    vector<int> rightSideView(TreeNode* root)
+    {
+        vector<int>ans;
+        queue<TreeNode*> q;
+        if (!root)
+            return ans;
+        q.push(root);
+        while (true)
+        {
+            int size = q.size();
+            if (size == 0)
+                return ans;
+            int* dataToAdd = new int();
+            while (size--)
+            {
+                TreeNode* temp = q.front();
+                q.pop();
+                *dataToAdd = temp->val;
+                if (temp->left)
+                    q.push(temp->left);
+                if (temp->right)
+                    q.push(temp->right);
+            }
+            if(dataToAdd)
+                ans.push_back(*dataToAdd);
+        }
+        return ans;
+    }
 }

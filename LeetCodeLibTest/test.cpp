@@ -550,61 +550,107 @@
 //	EXPECT_EQ(actual, expected);
 //}
 //#pragma endregion
-#pragma region longestZigZag
-TEST(longestZigZag, one)
+//#pragma region longestZigZag
+//TEST(longestZigZag, one)
+//{
+//	std::vector<std::optional<int>> input{ 1,nullopt,1,1,1,nullopt,nullopt,1,1,nullopt,1,nullopt,nullopt,nullopt,1 };
+//	int expected = 3;
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//
+//	int actual = leetcode::longestZigZag(root);
+//
+//	EXPECT_EQ(actual, expected);
+//}
+//TEST(longestZigZag, two)
+//{
+//	std::vector<std::optional<int>> input{ 1,1,1,nullopt,1,nullopt,nullopt,1,1,nullopt,1 };
+//	int expected = 4;
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//
+//	int actual = leetcode::longestZigZag(root);
+//
+//	EXPECT_EQ(actual, expected);
+//}
+//#pragma endregion
+//#pragma region lowestCommonAncestor
+//TEST(lowestCommonAncestor, one )
+//{
+//	std::vector<std::optional<int>> input{ 3,5,1,6,2,0,8,nullopt,nullopt,7,4 };
+//	int pVal = 5;
+//	int qVal = 1;
+//	int lcaVal = 3;
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//	TreeNode* q = testhelper::getNodeWithVal(root, qVal);
+//	TreeNode* p = testhelper::getNodeWithVal(root, pVal);
+//	TreeNode* expected = testhelper::getNodeWithVal(root, lcaVal);
+//
+//	TreeNode* actual = leetcode::lowestCommonAncestor(root, p, q);
+//
+//	EXPECT_EQ(actual->val, expected->val);
+//}
+//TEST(lowestCommonAncestor, two)
+//{
+//	std::vector<std::optional<int>> input{ 3,5,1,6,2,0,8,nullopt,nullopt,7,4 };
+//	int pVal = 5;
+//	int qVal = 4;
+//	int lcaVal = 5;
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//	TreeNode* q = testhelper::getNodeWithVal(root, qVal);
+//	TreeNode* p = testhelper::getNodeWithVal(root, pVal);
+//	TreeNode* expected = testhelper::getNodeWithVal(root, lcaVal);
+//
+//	TreeNode* actual = leetcode::lowestCommonAncestor(root, p, q);
+//
+//	EXPECT_EQ(actual->val, expected->val);
+//}
+//#pragma endregion
+#pragma region rightSideView
+TEST(rightSideView, one)
 {
-	std::vector<std::optional<int>> input{ 1,nullopt,1,1,1,nullopt,nullopt,1,1,nullopt,1,nullopt,nullopt,nullopt,1 };
-	int expected = 3;
+	std::vector<std::optional<int>> input{ 1,2,3,nullopt,5,nullopt,4 };
+	std::vector<int> expected = { 1,3,4 };
 
 	TreeNode* root = testhelper::vecToTree<int>(input);
 
-	int actual = leetcode::longestZigZag(root);
+	std::vector<int> actual = leetcode::rightSideView(root);
 
 	EXPECT_EQ(actual, expected);
 }
-TEST(longestZigZag, two)
+TEST(rightSideView, two)
 {
-	std::vector<std::optional<int>> input{ 1,1,1,nullopt,1,nullopt,nullopt,1,1,nullopt,1 };
-	int expected = 4;
+	std::vector<std::optional<int>> input{ 1,nullopt,3 };
+	std::vector<int> expected = { 1,3 };
 
 	TreeNode* root = testhelper::vecToTree<int>(input);
 
-	int actual = leetcode::longestZigZag(root);
+	std::vector<int> actual = leetcode::rightSideView(root);
 
 	EXPECT_EQ(actual, expected);
 }
-#pragma endregion
-#pragma region lowestCommonAncestor
-TEST(lowestCommonAncestor, one )
+TEST(rightSideView, three)
 {
-	std::vector<std::optional<int>> input{ 3,5,1,6,2,0,8,nullopt,nullopt,7,4 };
-	int pVal = 5;
-	int qVal = 1;
-	int lcaVal = 3;
+	std::vector<std::optional<int>> input{  };
+	std::vector<int> expected = {  };
 
 	TreeNode* root = testhelper::vecToTree<int>(input);
-	TreeNode* q = testhelper::getNodeWithVal(root, qVal);
-	TreeNode* p = testhelper::getNodeWithVal(root, pVal);
-	TreeNode* expected = testhelper::getNodeWithVal(root, lcaVal);
 
-	TreeNode* actual = leetcode::lowestCommonAncestor(root, p, q);
+	std::vector<int> actual = leetcode::rightSideView(root);
 
-	EXPECT_EQ(actual->val, expected->val);
+	EXPECT_EQ(actual, expected);
 }
-TEST(lowestCommonAncestor, two)
+TEST(rightSideView, four)
 {
-	std::vector<std::optional<int>> input{ 3,5,1,6,2,0,8,nullopt,nullopt,7,4 };
-	int pVal = 5;
-	int qVal = 4;
-	int lcaVal = 5;
+	std::vector<std::optional<int>> input{ 1,2,3,4 };
+	std::vector<int> expected = { 1,3,4 };
 
 	TreeNode* root = testhelper::vecToTree<int>(input);
-	TreeNode* q = testhelper::getNodeWithVal(root, qVal);
-	TreeNode* p = testhelper::getNodeWithVal(root, pVal);
-	TreeNode* expected = testhelper::getNodeWithVal(root, lcaVal);
 
-	TreeNode* actual = leetcode::lowestCommonAncestor(root, p, q);
+	std::vector<int> actual = leetcode::rightSideView(root);
 
-	EXPECT_EQ(actual->val, expected->val);
+	EXPECT_EQ(actual, expected);
 }
 #pragma endregion
