@@ -706,4 +706,37 @@ namespace leetcode
         }
         return ans;
     }
+
+    int maxLevelSum(TreeNode* root) 
+    {
+        int maxLevel = 1;
+        int max = root->val;
+        int runningSum = 0;
+        int currLevel = 0;;
+        queue<TreeNode*> q;
+        q.push(root);
+        while (true)
+        {
+            ++currLevel;
+            runningSum = 0;
+            int nodesAtLevel = q.size();
+            if (nodesAtLevel == 0)
+                return maxLevel;
+            while (nodesAtLevel--)
+            {
+                runningSum += q.front()->val;
+                if (q.front()->left)
+                    q.push(q.front()->left);
+                if (q.front()->right)
+                    q.push(q.front()->right);
+                q.pop();
+            }
+            if (runningSum > max)
+            {
+                max = runningSum;
+                maxLevel = currLevel;
+            }
+        }
+        return maxLevel;
+    }
 }

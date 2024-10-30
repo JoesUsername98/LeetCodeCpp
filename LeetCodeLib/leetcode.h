@@ -75,4 +75,6 @@ namespace leetcode
 
     extern LEETCODE_API vector<int> rightSideView(TreeNode* root);
 
+    extern LEETCODE_API int maxLevelSum(TreeNode* root);
+
 }

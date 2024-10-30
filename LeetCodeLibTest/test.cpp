@@ -608,49 +608,95 @@
 //	EXPECT_EQ(actual->val, expected->val);
 //}
 //#pragma endregion
+//#pragma region rightSideView
+//TEST(rightSideView, one)
+//{
+//	std::vector<std::optional<int>> input{ 1,2,3,nullopt,5,nullopt,4 };
+//	std::vector<int> expected = { 1,3,4 };
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//
+//	std::vector<int> actual = leetcode::rightSideView(root);
+//
+//	EXPECT_EQ(actual, expected);
+//}
+//TEST(rightSideView, two)
+//{
+//	std::vector<std::optional<int>> input{ 1,nullopt,3 };
+//	std::vector<int> expected = { 1,3 };
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//
+//	std::vector<int> actual = leetcode::rightSideView(root);
+//
+//	EXPECT_EQ(actual, expected);
+//}
+//TEST(rightSideView, three)
+//{
+//	std::vector<std::optional<int>> input{  };
+//	std::vector<int> expected = {  };
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//
+//	std::vector<int> actual = leetcode::rightSideView(root);
+//
+//	EXPECT_EQ(actual, expected);
+//}
+//TEST(rightSideView, four)
+//{
+//	std::vector<std::optional<int>> input{ 1,2,3,4 };
+//	std::vector<int> expected = { 1,3,4 };
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//
+//	std::vector<int> actual = leetcode::rightSideView(root);
+//
+//	EXPECT_EQ(actual, expected);
+//}
+//#pragma endregion
 #pragma region rightSideView
-TEST(rightSideView, one)
+TEST(maxLevelSum, one)
 {
-	std::vector<std::optional<int>> input{ 1,2,3,nullopt,5,nullopt,4 };
-	std::vector<int> expected = { 1,3,4 };
+	std::vector<std::optional<int>> input{ 1,7,0,7,-8,nullopt,nullopt };
+	int expected = 2;
 
 	TreeNode* root = testhelper::vecToTree<int>(input);
 
-	std::vector<int> actual = leetcode::rightSideView(root);
+	int actual = leetcode::maxLevelSum(root);
 
 	EXPECT_EQ(actual, expected);
 }
 TEST(rightSideView, two)
 {
-	std::vector<std::optional<int>> input{ 1,nullopt,3 };
-	std::vector<int> expected = { 1,3 };
+	std::vector<std::optional<int>> input{ 989,nullopt,10250,98693,-89388,nullopt,nullopt,nullopt,-32127 };
+	int expected = 2;
 
 	TreeNode* root = testhelper::vecToTree<int>(input);
 
-	std::vector<int> actual = leetcode::rightSideView(root);
+	int actual = leetcode::maxLevelSum(root);
 
 	EXPECT_EQ(actual, expected);
 }
-TEST(rightSideView, three)
-{
-	std::vector<std::optional<int>> input{  };
-	std::vector<int> expected = {  };
-
-	TreeNode* root = testhelper::vecToTree<int>(input);
-
-	std::vector<int> actual = leetcode::rightSideView(root);
-
-	EXPECT_EQ(actual, expected);
-}
-TEST(rightSideView, four)
-{
-	std::vector<std::optional<int>> input{ 1,2,3,4 };
-	std::vector<int> expected = { 1,3,4 };
-
-	TreeNode* root = testhelper::vecToTree<int>(input);
-
-	std::vector<int> actual = leetcode::rightSideView(root);
-
-	EXPECT_EQ(actual, expected);
-}
-#pragma endregion
+//TEST(rightSideView, three)
+//{
+//	std::vector<std::optional<int>> input{ 1,7,0,7,-8,nullopt,nullopt };
+//	int expected = 2;
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//
+//	int actual = leetcode::maxLevelSum(root);
+//
+//	EXPECT_EQ(actual, expected);
+//}
+//TEST(rightSideView, four)
+//{
+//	std::vector<std::optional<int>> input{ 1,7,0,7,-8,nullopt,nullopt };
+//	int expected = 2;
+//
+//	TreeNode* root = testhelper::vecToTree<int>(input);
+//
+//	int actual = leetcode::maxLevelSum(root);
+//
+//	EXPECT_EQ(actual, expected);
+//}
+//#pragma endregion
