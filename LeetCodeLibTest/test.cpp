@@ -654,30 +654,8 @@
 //	EXPECT_EQ(actual, expected);
 //}
 //#pragma endregion
-#pragma region rightSideView
-TEST(maxLevelSum, one)
-{
-	std::vector<std::optional<int>> input{ 1,7,0,7,-8,nullopt,nullopt };
-	int expected = 2;
-
-	TreeNode* root = testhelper::vecToTree<int>(input);
-
-	int actual = leetcode::maxLevelSum(root);
-
-	EXPECT_EQ(actual, expected);
-}
-TEST(rightSideView, two)
-{
-	std::vector<std::optional<int>> input{ 989,nullopt,10250,98693,-89388,nullopt,nullopt,nullopt,-32127 };
-	int expected = 2;
-
-	TreeNode* root = testhelper::vecToTree<int>(input);
-
-	int actual = leetcode::maxLevelSum(root);
-
-	EXPECT_EQ(actual, expected);
-}
-//TEST(rightSideView, three)
+//#pragma region rightSideView
+//TEST(maxLevelSum, one)
 //{
 //	std::vector<std::optional<int>> input{ 1,7,0,7,-8,nullopt,nullopt };
 //	int expected = 2;
@@ -688,9 +666,9 @@ TEST(rightSideView, two)
 //
 //	EXPECT_EQ(actual, expected);
 //}
-//TEST(rightSideView, four)
+//TEST(rightSideView, two)
 //{
-//	std::vector<std::optional<int>> input{ 1,7,0,7,-8,nullopt,nullopt };
+//	std::vector<std::optional<int>> input{ 989,nullopt,10250,98693,-89388,nullopt,nullopt,nullopt,-32127 };
 //	int expected = 2;
 //
 //	TreeNode* root = testhelper::vecToTree<int>(input);
@@ -700,3 +678,31 @@ TEST(rightSideView, two)
 //	EXPECT_EQ(actual, expected);
 //}
 //#pragma endregion
+#pragma region rightSideView
+TEST(searchBST, one)
+{
+	int val = 2;
+	TreeNode* root = testhelper::vecToTree<int>({4, 2, 7, 1, 3});
+	TreeNode* expected = testhelper::vecToTree<int>({ 2,1,3 });
+
+	TreeNode* actual = leetcode::searchBST(root, val);
+
+	if (!expected)
+		EXPECT_EQ(!expected, !actual);
+	else
+		EXPECT_EQ(actual->val, expected->val);
+}
+TEST(searchBST, two)
+{
+	int val = 5;
+	TreeNode* root = testhelper::vecToTree<int>({ 4, 2, 7, 1, 3 });
+	TreeNode* expected = nullptr;
+
+	TreeNode* actual = leetcode::searchBST(root, val);
+
+	if( !expected )
+		EXPECT_EQ(!expected, !actual);
+	else
+		EXPECT_EQ(actual->val, expected->val);
+}
+#pragma endregion
