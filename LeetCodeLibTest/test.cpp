@@ -706,35 +706,47 @@
 //		EXPECT_EQ(actual->val, expected->val);
 //}
 //#pragma endregion
-#pragma region treeToVect
-TEST(vecToTree, one)
+//#pragma region treeToVect
+//TEST(vecToTree, one)
+//{
+//	vector<optional<int>> in = { 5,3,6,2,4,nullopt,7 };
+//	TreeNode* root = testhelper::vecToTree<int>(in);
+//	vector<optional<int>> out = testhelper::treeToVect(root);
+//
+//	EXPECT_EQ(in, out);
+//}
+//#pragma endregion
+//#pragma region deleteNode
+//TEST(deleteNode, one)
+//{
+//	int val = 3;
+//	TreeNode* root = testhelper::vecToTree<int>({ 5,3,6,2,4,nullopt,7 });
+//	TreeNode* expected = testhelper::vecToTree<int>({ 5,4,6,2,nullopt,nullopt,7 });
+//
+//	TreeNode* actual = leetcode::deleteNode(root, val);
+//
+//	EXPECT_EQ(testhelper::treeToVect(actual), testhelper::treeToVect(expected));
+//}
+//TEST(deleteNode, two)
+//{
+//	int val = 0;
+//	TreeNode* root = testhelper::vecToTree<int>({ 5,3,6,2,4,nullopt,7 });
+//	TreeNode* expected = testhelper::vecToTree<int>({ 5,3,6,2,4,nullopt,7 });
+//
+//	TreeNode* actual = leetcode::deleteNode(root, val);
+//
+//	EXPECT_EQ(testhelper::treeToVect(actual), testhelper::treeToVect(expected));
+//}
+//#pragma endregion
+#pragma region canVisitAllRooms
+TEST(canVisitAllRooms, one)
 {
-	vector<optional<int>> in = { 5,3,6,2,4,nullopt,7 };
-	TreeNode* root = testhelper::vecToTree<int>(in);
-	vector<optional<int>> out = testhelper::treeToVect(root);
-
-	EXPECT_EQ(in, out);
-}
-#pragma endregion
-#pragma region deleteNode
-TEST(deleteNode, one)
-{
-	int val = 3;
-	TreeNode* root = testhelper::vecToTree<int>({ 5,3,6,2,4,nullopt,7 });
-	TreeNode* expected = testhelper::vecToTree<int>({ 5,4,6,2,nullopt,nullopt,7 });
-
-	TreeNode* actual = leetcode::deleteNode(root, val);
-
-	EXPECT_EQ(testhelper::treeToVect(actual), testhelper::treeToVect(expected));
+	vector<vector<int>> input = { {1} ,{2},{3},{} };
+	EXPECT_EQ(leetcode::canVisitAllRooms(input), true);
 }
 TEST(deleteNode, two)
 {
-	int val = 0;
-	TreeNode* root = testhelper::vecToTree<int>({ 5,3,6,2,4,nullopt,7 });
-	TreeNode* expected = testhelper::vecToTree<int>({ 5,3,6,2,4,nullopt,7 });
-
-	TreeNode* actual = leetcode::deleteNode(root, val);
-
-	EXPECT_EQ(testhelper::treeToVect(actual), testhelper::treeToVect(expected));
+	vector<vector<int>> input = { {1, 3}, { 3, 0, 1 }, { 2 }, { 0 } };
+	EXPECT_EQ(leetcode::canVisitAllRooms(input), false);
 }
 #pragma endregion

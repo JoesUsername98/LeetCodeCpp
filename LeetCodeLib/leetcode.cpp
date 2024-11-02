@@ -17,22 +17,22 @@ namespace leetcode
     int pivotIndex(std::vector<int>& nums) {
         for (int SUM = std::accumulate(nums.begin(), nums.end(), 0), pvt = 0, lsum = 0, rsum = SUM - nums[pvt];
             pvt < nums.size();
-            lsum += nums[pvt++], rsum -= pvt < nums.size() ? nums[pvt] : 0) 
-                if (rsum == lsum) 
-                    return pvt;
+            lsum += nums[pvt++], rsum -= pvt < nums.size() ? nums[pvt] : 0)
+            if (rsum == lsum)
+                return pvt;
         return -1;
     }
 
-    vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2) 
+    vector<vector<int>> findDifference(vector<int>& nums1, vector<int>& nums2)
     {
-        unordered_set<int> set1 (std::make_move_iterator(nums1.begin()), std::make_move_iterator(nums1.end()));
-        unordered_set<int> set2 (std::make_move_iterator(nums2.begin()), std::make_move_iterator(nums2.end()));
+        unordered_set<int> set1(std::make_move_iterator(nums1.begin()), std::make_move_iterator(nums1.end()));
+        unordered_set<int> set2(std::make_move_iterator(nums2.begin()), std::make_move_iterator(nums2.end()));
         vector<vector<int> > answer = { {} , {} };
 
         for (const auto& i : set1)
             if (set2.find(i) == set2.cend())
                 answer[0].push_back(i);
-       
+
         for (const auto& i : set2)
             if (set1.find(i) == set1.cend())
                 answer[1].push_back(i);
@@ -40,7 +40,7 @@ namespace leetcode
         return answer;
     }
 
-    bool uniqueOccurrences(vector<int>& arr) 
+    bool uniqueOccurrences(vector<int>& arr)
     {
         map<int, int> occMap;
         for (const auto& item : arr)
@@ -72,7 +72,7 @@ namespace leetcode
         {
             ++occMap2[item];
             if (occMap1.find(item) == occMap1.cend())
-                return false; 
+                return false;
         }
 
         vector<int> occVec2;
@@ -88,54 +88,54 @@ namespace leetcode
         // By understanding that there are only 26 letters in the alphabet we can replace the set and map with a vector...
         if (word1.size() != word2.size())
             return false;
-        
+
         std::vector<int> freq1(26, 0), freq2(26, 0); //Represents freq of each char in alphabet
 
-        for (char ch : word1) 
+        for (char ch : word1)
             freq1[ch - 'a']++;
 
-        for (char ch : word2) 
+        for (char ch : word2)
             freq2[ch - 'a']++;
 
         //ensure that the set of chars are equal.
-        for (int i = 0; i < 26; i++) 
-            if ((freq1[i] && !freq2[i]) || (!freq1[i] && freq2[i])) 
+        for (int i = 0; i < 26; i++)
+            if ((freq1[i] && !freq2[i]) || (!freq1[i] && freq2[i]))
                 return false;
 
         std::sort(freq1.begin(), freq1.end()); std::sort(freq2.begin(), freq2.end());
 
         //ensure that the set of chars freqs are equal - char independant.
-        for (int i = 0; i < 26; i++) 
-            if (freq1[i] != freq2[i]) 
+        for (int i = 0; i < 26; i++)
+            if (freq1[i] != freq2[i])
                 return false;
 
         return true;
     }
 
-    int equalPairs(vector<vector<int>>& grid) 
+    int equalPairs(vector<vector<int>>& grid)
     {
         int count = 0;
         set<vector<int>> uniqueRows;
         unordered_map<int, vector<int>> dupeRows;
 
-        for (int i = 0; i < grid.size(); ++i) 
+        for (int i = 0; i < grid.size(); ++i)
         {
             // if the row already exists, then in case of a duplicate, it has to be counted multiple times
             if (uniqueRows.find(grid[i]) != uniqueRows.end())
                 dupeRows[i] = grid[i];
             uniqueRows.insert(grid[i]);
         }
-        for (int i = 0; i < grid.size(); ++i) 
+        for (int i = 0; i < grid.size(); ++i)
         {
             vector<int> col;
-            for (int j = 0; j < grid.size(); ++j) 
+            for (int j = 0; j < grid.size(); ++j)
                 col.push_back(grid[j][i]);
-           
+
             if (uniqueRows.find(col) == uniqueRows.end())
                 continue;
 
             //if col in uniqueRow increment
-            ++count; 
+            ++count;
 
             //  iterate through dupe unordered_map to add duplicate rows
             for (const auto& [iRow, row] : dupeRows)
@@ -146,27 +146,27 @@ namespace leetcode
         return count;
     }
 
-    string removeStars(string s) 
+    string removeStars(string s)
     {
         std::vector<std::pair<int, int>> removes;
-        for (int it = s.size() - 1; it >=0; --it)
+        for (int it = s.size() - 1; it >= 0; --it)
         {
             if (s[it] != '*')
                 continue;
 
-            if (removes.size() == 0 ) 
+            if (removes.size() == 0)
                 removes.push_back(std::make_pair(it, 1));
             else if (removes.back().first - removes.back().second > it)
                 removes.push_back(std::make_pair(it, 1));
-            else if (removes.back().first - removes.back().second <= it )
+            else if (removes.back().first - removes.back().second <= it)
             {
-                --removes.back().first; 
+                --removes.back().first;
                 ++removes.back().second;
             }
         }
 
-        for (const auto& [idx, len] : removes) 
-            s.erase(idx - len, 2* len);
+        for (const auto& [idx, len] : removes)
+            s.erase(idx - len, 2 * len);
 
         return s;
     }
@@ -213,13 +213,13 @@ namespace leetcode
         return asteroids;
     }
 
-    string decodeString(string s) 
+    string decodeString(string s)
     {
         stack<uint16_t> numStack;
         stack<std::string> subStrStack;
         std::string answer = "";
         uint16_t n = 0;
-        for (char c : s) 
+        for (char c : s)
         {
             if (isdigit(c)) //start new op
                 n = n * 10 + c - '0'; // calc n
@@ -235,7 +235,7 @@ namespace leetcode
                 uint16_t k = numStack.top(); numStack.pop();
                 std::string temp = answer;
                 answer = subStrStack.top(); subStrStack.pop();
-                while (k-- > 0) 
+                while (k-- > 0)
                     answer += temp;
             }
             else  // add characters  
@@ -247,14 +247,14 @@ namespace leetcode
 
     int RecentCounter::ping(int t)
     {
-        while ( !m_Q.empty() && m_Q.front() < t - WINDOW)
+        while (!m_Q.empty() && m_Q.front() < t - WINDOW)
             m_Q.pop();
 
         m_Q.push(t);
         return m_Q.size();
     }
 
-    string predictPartyVictory(string senate) 
+    string predictPartyVictory(string senate)
     {
         std::queue<int> rad;
         std::queue<int> dir;
@@ -317,14 +317,14 @@ namespace leetcode
 
     ListNode* oddEvenList(ListNode* head)
     {
-        if (!head || !head->next || !head->next->next) 
+        if (!head || !head->next || !head->next->next)
             return head;
 
         ListNode* odd = head;
         ListNode* even = head->next;
         ListNode* even_start = head->next;
 
-        while (odd->next && even->next) 
+        while (odd->next && even->next)
         {
             odd->next = even->next;         //Connect all odds
             even->next = odd->next->next;  //Connect all evens
@@ -340,7 +340,7 @@ namespace leetcode
         if (!head || !head->next)
             return head;
 
-//#define REVERSELIST_FAST
+        //#define REVERSELIST_FAST
 #ifdef REVERSELIST_FAST
         std::vector<int> valVec;
         ListNode* curr = head;
@@ -361,7 +361,7 @@ namespace leetcode
 #else// low memory
         std::stack<ListNode*> reverseOrder;
         ListNode* curr = head;
-        while (curr) 
+        while (curr)
         {
             reverseOrder.push(curr);
             curr = curr->next;
@@ -373,7 +373,7 @@ namespace leetcode
         newHead->next = reverseOrder.top();
         ListNode* newHeadPtr = newHead->next;
 
-        while ( reverseOrder.size() ) 
+        while (reverseOrder.size())
         {
             newHeadPtr->next = reverseOrder.top();
             newHeadPtr = newHeadPtr->next;
@@ -407,12 +407,12 @@ namespace leetcode
             curr->next = prev;
             prev = curr;
             curr = next;
-    }
+        }
         return prev;
     }
-    int pairSum(ListNode* head) 
+    int pairSum(ListNode* head)
     {
-//#define PAIRSUM_NOREVERSE
+        //#define PAIRSUM_NOREVERSE
 #ifdef PAIRSUM_NOREVERSE
         std::deque<int> actual;
         for (leetcode::ListNode* curr = head; curr; curr = curr->next)
@@ -421,14 +421,14 @@ namespace leetcode
         int maxPair = 0;
         while (!actual.empty())
         {
-            maxPair = max( maxPair, actual.front() + actual.back() );
+            maxPair = max(maxPair, actual.front() + actual.back());
             actual.pop_back();
             actual.pop_front();
         }
 
         return maxPair;
 #endif
-//#define PAIRSUM_CRAPREVERSE
+        //#define PAIRSUM_CRAPREVERSE
 #ifdef PAIRSUM_CRAPREVERSE
         std::stack<ListNode*> reverseOrder;
         ListNode* fwdIt = head;
@@ -437,7 +437,7 @@ namespace leetcode
             reverseOrder.push(fwdIt);
             fwdIt = fwdIt->next;
         }
-        
+
         const size_t halfway = reverseOrder.size() / 2;
         ListNode* reverse = reverseOrder.top();
         reverseOrder.pop();
@@ -486,9 +486,9 @@ namespace leetcode
 #ifdef MAXDEPTH_ATTEMPT_1
     int maxDepthRecur(TreeNode* root, int depthSoFar)
     {
-        if (!root )
+        if (!root)
             return depthSoFar - 1;
-        else if  (!root->left && !root->right) 
+        else if (!root->left && !root->right)
             return depthSoFar;
 
         return max(maxDepthRecur(root->left, depthSoFar + 1), maxDepthRecur(root->right, depthSoFar + 1));
@@ -502,7 +502,7 @@ namespace leetcode
 #ifdef MAXDEPTH_COPY
     int maxDepth(TreeNode* root)
     {
-        if (!root) 
+        if (!root)
             return 0;
         return max(maxDepth(root->left), maxDepth(root->right)) + 1;
     }
@@ -532,7 +532,7 @@ namespace leetcode
 
 
 #ifdef GOOD_NODES_RECCUR
-    int goodNodesRecurr(TreeNode* root, int maxInPath )
+    int goodNodesRecurr(TreeNode* root, int maxInPath)
     {
         if (!root)
             return 0;
@@ -540,23 +540,23 @@ namespace leetcode
         int result = 0;
         if (root->right)
         {
-            if (root->right->val >= maxInPath )
+            if (root->right->val >= maxInPath)
                 ++result;
-            result += goodNodesRecurr(root->right, max( root->right->val, maxInPath ) );
+            result += goodNodesRecurr(root->right, max(root->right->val, maxInPath));
         }
         if (root->left)
         {
-            if (root->left->val >= maxInPath )
+            if (root->left->val >= maxInPath)
                 ++result;
-            result += goodNodesRecurr(root->left, max(root->left->val, maxInPath) );
+            result += goodNodesRecurr(root->left, max(root->left->val, maxInPath));
         }
 
         return result;
     }
 
-    int goodNodes(TreeNode* root) 
+    int goodNodes(TreeNode* root)
     {
-        return goodNodesRecurr( root, root->val ) + 1;
+        return goodNodesRecurr(root, root->val) + 1;
     }
 #endif
 
@@ -567,24 +567,24 @@ namespace leetcode
         q.emplace_back(root->right, root->val);
 
         int result = 1;
-        while (!q.empty()) 
+        while (!q.empty())
         {
             std::pair<TreeNode*, int> nodeAndMax = q.front();
             q.pop_front();
-            
+
             if (!nodeAndMax.first)
                 continue;
 
             if (nodeAndMax.first->val >= nodeAndMax.second)
                 ++result;
 
-            q.emplace_back(nodeAndMax.first->left, max(nodeAndMax.first->val, nodeAndMax.second) );
-            q.emplace_back(nodeAndMax.first->right, max(nodeAndMax.first->val, nodeAndMax.second) );
+            q.emplace_back(nodeAndMax.first->left, max(nodeAndMax.first->val, nodeAndMax.second));
+            q.emplace_back(nodeAndMax.first->right, max(nodeAndMax.first->val, nodeAndMax.second));
         }
         return result;
     }
 
-    int pathSum3Helper(TreeNode* root, long runningSum, int target, unordered_map<long,int>& map)
+    int pathSum3Helper(TreeNode* root, long runningSum, int target, unordered_map<long, int>& map)
     {
         if (!root)
             return 0;
@@ -612,11 +612,11 @@ namespace leetcode
     {
         if (!root)
             return count;
-        
+
         TreeNode* next = moveLeft ? root->right : root->left;
         TreeNode* alt = moveLeft ? root->left : root->right;
-  
-        return max(count, max( longestZigZagRecur( next, !moveLeft, count + 1), longestZigZagRecur( alt, moveLeft, 0) ) );
+
+        return max(count, max(longestZigZagRecur(next, !moveLeft, count + 1), longestZigZagRecur(alt, moveLeft, 0)));
     }
 
     int longestZigZag(TreeNode* root)
@@ -624,7 +624,7 @@ namespace leetcode
         return max(longestZigZagRecur(root->left, true, 0), longestZigZagRecur(root->right, false, 0));
     }
 
-    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) 
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q)
     {
         if (!root)
             return nullptr;
@@ -701,13 +701,13 @@ namespace leetcode
                 if (temp->right)
                     q.push(temp->right);
             }
-            if(dataToAdd)
+            if (dataToAdd)
                 ans.push_back(*dataToAdd);
         }
         return ans;
     }
 
-    int maxLevelSum(TreeNode* root) 
+    int maxLevelSum(TreeNode* root)
     {
         int maxLevel = 1;
         int max = root->val;
@@ -740,15 +740,15 @@ namespace leetcode
         return maxLevel;
     }
 
-/*    TreeNode* searchBST(TreeNode* root, int val)
-    {
-        if ( !root || root->val == val)
-            return root;
-        if (root->val > val)
-            return searchBST( root->left, val);
-       
-       return searchBST(root->right, val);
-    }*/   
+    /*    TreeNode* searchBST(TreeNode* root, int val)
+        {
+            if ( !root || root->val == val)
+                return root;
+            if (root->val > val)
+                return searchBST( root->left, val);
+
+           return searchBST(root->right, val);
+        }*/
 
     TreeNode* searchBST(TreeNode* root, int val)
     {
@@ -764,7 +764,7 @@ namespace leetcode
         return root;
     }
 
-    TreeNode* deleteNode(TreeNode* root, int key) 
+    TreeNode* deleteNode(TreeNode* root, int key)
     {
         if (!root)
             return root;
@@ -773,7 +773,7 @@ namespace leetcode
             root->right = deleteNode(root->right, key);
         else if (key < root->val)
             root->left = deleteNode(root->left, key);
-        else 
+        else
         {
             if (!root->left)
                 return root->right;
@@ -781,13 +781,29 @@ namespace leetcode
                 return root->left;
 
             TreeNode* cur = root->right;
-            while (cur->left) 
+            while (cur->left)
                 cur = cur->left;
-             
+
             root->val = cur->val;
             root->right = deleteNode(root->right, root->val);
         }
 
         return root;
+    }
+
+    void canVisitAllRoomsDFS(int room, unordered_set<int>& roomsVisited, const vector<vector<int>>& rooms)
+    {
+        roomsVisited.insert(room);
+        for( const auto& key : rooms[room])
+            if( !roomsVisited.contains( key )  )
+                canVisitAllRoomsDFS( key , roomsVisited, rooms);
+    }
+
+    bool canVisitAllRooms(vector<vector<int>>& rooms) 
+    {
+        unordered_set<int> roomsVisited;
+        canVisitAllRoomsDFS( 0 , roomsVisited, rooms) ;
+        
+        return roomsVisited.size()  == rooms.size() ;
     }
 }
