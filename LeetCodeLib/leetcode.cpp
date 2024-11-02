@@ -806,4 +806,67 @@ namespace leetcode
         
         return roomsVisited.size()  == rooms.size() ;
     }
+
+    //void getProvince(int thisCity, vector<vector<int>>& isConnected, set<int>& thisProvince)
+    //{
+    //    thisProvince.insert( thisCity );
+    //    for (int otherCityIndexes = 0; otherCityIndexes < isConnected[thisCity].size(); ++otherCityIndexes) 
+    //    {
+    //        if (!isConnected[thisCity][otherCityIndexes]) // is connected
+    //            continue;
+
+    //        if (otherCityIndexes == thisCity) // not connected to itself
+    //            continue;
+
+    //        if (thisProvince.contains(otherCityIndexes)) // is not already indirectly connected 
+    //            continue;
+
+    //        getProvince(otherCityIndexes, isConnected, thisProvince);
+    //    }
+    //}
+
+    //int findCircleNum(vector<vector<int>>& isConnected) 
+    //{
+    //    set<set<int>> provinces;
+
+    //    for (int cityIndex = 0; cityIndex < isConnected.size(); ++cityIndex)
+    //    {
+    //        set<int> thisProvince;
+    //        getProvince( cityIndex, isConnected, thisProvince);
+    //        provinces.insert(thisProvince);
+    //    }
+
+    //    return provinces.size();
+    //}
+    
+    void updateVisited(int thisCity, vector<vector<int>>& isConnected, vector<bool>& visited)
+    {
+        visited[ thisCity ] = true;
+        for (int otherCityIndexes = 0; otherCityIndexes < isConnected[thisCity].size(); ++otherCityIndexes) 
+        {
+            if (visited[otherCityIndexes]) //have not already visited
+                continue;
+
+            if (!isConnected[thisCity][otherCityIndexes]) // is connected
+                continue;
+
+            updateVisited(otherCityIndexes, isConnected, visited);
+        }
+    }
+
+    int findCircleNum(vector<vector<int>>& isConnected) 
+    {
+        vector<bool>visited(isConnected.size(), false);
+        int visitCount = 0;
+        for (int cityIndex = 0; cityIndex < isConnected.size(); ++cityIndex)
+        {
+            if (visited[cityIndex])
+                continue;
+
+            updateVisited(cityIndex, isConnected, visited);
+            ++visitCount;
+        }
+
+        return visitCount;
+    }
 }

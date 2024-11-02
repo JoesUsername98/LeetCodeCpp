@@ -82,4 +82,7 @@ namespace leetcode
     extern LEETCODE_API TreeNode* deleteNode(TreeNode* root, int val);
 
     extern LEETCODE_API bool canVisitAllRooms(vector<vector<int>>& rooms);
+
+    extern LEETCODE_API int findCircleNum(vector<vector<int>>& isConnected);
+
 }

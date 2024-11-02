@@ -738,15 +738,27 @@
 //	EXPECT_EQ(testhelper::treeToVect(actual), testhelper::treeToVect(expected));
 //}
 //#pragma endregion
-#pragma region canVisitAllRooms
-TEST(canVisitAllRooms, one)
+//#pragma region canVisitAllRooms
+//TEST(canVisitAllRooms, one)
+//{
+//	vector<vector<int>> input = { {1} ,{2},{3},{} };
+//	EXPECT_EQ(leetcode::canVisitAllRooms(input), true);
+//}
+//TEST(canVisitAllRooms, two)
+//{
+//	vector<vector<int>> input = { {1, 3}, { 3, 0, 1 }, { 2 }, { 0 } };
+//	EXPECT_EQ(leetcode::canVisitAllRooms(input), false);
+//}
+//#pragma endregion
+#pragma region findCircleNum
+TEST(findCircleNum, one)
 {
-	vector<vector<int>> input = { {1} ,{2},{3},{} };
-	EXPECT_EQ(leetcode::canVisitAllRooms(input), true);
+	vector<vector<int>> input = { {1,1,0 }, { 1,1,0 }, { 0,0,1 }};
+	EXPECT_EQ(leetcode::findCircleNum(input), 2);
 }
-TEST(deleteNode, two)
+TEST(findCircleNum, two)
 {
-	vector<vector<int>> input = { {1, 3}, { 3, 0, 1 }, { 2 }, { 0 } };
-	EXPECT_EQ(leetcode::canVisitAllRooms(input), false);
+	vector<vector<int>> input = { {1,0,0 }, { 0,1,0 }, { 0,0,1 } };
+	EXPECT_EQ(leetcode::findCircleNum(input), 3);
 }
 #pragma endregion
