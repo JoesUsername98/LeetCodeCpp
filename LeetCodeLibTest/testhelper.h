@@ -74,6 +74,39 @@ namespace testhelper
 		return root;
 	}
 
+	vector<optional<int>> treeToVect(TreeNode* root )
+	{
+		if (!root) return {};
+
+		vector<optional<int>> result;
+		queue<TreeNode*> q;
+		q.push(root);
+
+		while (!q.empty()) 
+		{
+			TreeNode* current = q.front();
+			q.pop();
+
+			// Append the value if the node is not null; append nullopt if it is
+			if (current) {
+				result.push_back(current->val);
+				q.push(current->left);
+				q.push(current->right);
+			}
+			else {
+				result.push_back(nullopt);
+			}
+		}
+
+		// Remove trailing nullopt values to match the original input format
+		while (!result.empty() && !result.back().has_value()) 
+		{
+			result.pop_back();
+		}
+
+		return result;
+	}
+
 	template <typename T>
 	TreeNode* getNodeWithVal(TreeNode* root, T val)
 	{

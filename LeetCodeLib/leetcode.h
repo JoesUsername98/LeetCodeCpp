@@ -78,4 +78,7 @@ namespace leetcode
     extern LEETCODE_API int maxLevelSum(TreeNode* root);
 
     extern LEETCODE_API TreeNode* searchBST(TreeNode* root, int val);
+
+    extern LEETCODE_API TreeNode* deleteNode(TreeNode* root, int val);
+
 }

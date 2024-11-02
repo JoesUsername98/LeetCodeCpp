@@ -678,31 +678,63 @@
 //	EXPECT_EQ(actual, expected);
 //}
 //#pragma endregion
-#pragma region rightSideView
-TEST(searchBST, one)
+//#pragma region searchBST
+//TEST(searchBST, one)
+//{
+//	int val = 2;
+//	TreeNode* root = testhelper::vecToTree<int>({4, 2, 7, 1, 3});
+//	TreeNode* expected = testhelper::vecToTree<int>({ 2,1,3 });
+//
+//	TreeNode* actual = leetcode::searchBST(root, val);
+//
+//	if (!expected)
+//		EXPECT_EQ(!expected, !actual);
+//	else
+//		EXPECT_EQ(actual->val, expected->val);
+//}
+//TEST(searchBST, two)
+//{
+//	int val = 5;
+//	TreeNode* root = testhelper::vecToTree<int>({ 4, 2, 7, 1, 3 });
+//	TreeNode* expected = nullptr;
+//
+//	TreeNode* actual = leetcode::searchBST(root, val);
+//
+//	if( !expected )
+//		EXPECT_EQ(!expected, !actual);
+//	else
+//		EXPECT_EQ(actual->val, expected->val);
+//}
+//#pragma endregion
+#pragma region treeToVect
+TEST(vecToTree, one)
 {
-	int val = 2;
-	TreeNode* root = testhelper::vecToTree<int>({4, 2, 7, 1, 3});
-	TreeNode* expected = testhelper::vecToTree<int>({ 2,1,3 });
+	vector<optional<int>> in = { 5,3,6,2,4,nullopt,7 };
+	TreeNode* root = testhelper::vecToTree<int>(in);
+	vector<optional<int>> out = testhelper::treeToVect(root);
 
-	TreeNode* actual = leetcode::searchBST(root, val);
-
-	if (!expected)
-		EXPECT_EQ(!expected, !actual);
-	else
-		EXPECT_EQ(actual->val, expected->val);
+	EXPECT_EQ(in, out);
 }
-TEST(searchBST, two)
+#pragma endregion
+#pragma region deleteNode
+TEST(deleteNode, one)
 {
-	int val = 5;
-	TreeNode* root = testhelper::vecToTree<int>({ 4, 2, 7, 1, 3 });
-	TreeNode* expected = nullptr;
+	int val = 3;
+	TreeNode* root = testhelper::vecToTree<int>({ 5,3,6,2,4,nullopt,7 });
+	TreeNode* expected = testhelper::vecToTree<int>({ 5,4,6,2,nullopt,nullopt,7 });
 
-	TreeNode* actual = leetcode::searchBST(root, val);
+	TreeNode* actual = leetcode::deleteNode(root, val);
 
-	if( !expected )
-		EXPECT_EQ(!expected, !actual);
-	else
-		EXPECT_EQ(actual->val, expected->val);
+	EXPECT_EQ(testhelper::treeToVect(actual), testhelper::treeToVect(expected));
+}
+TEST(deleteNode, two)
+{
+	int val = 0;
+	TreeNode* root = testhelper::vecToTree<int>({ 5,3,6,2,4,nullopt,7 });
+	TreeNode* expected = testhelper::vecToTree<int>({ 5,3,6,2,4,nullopt,7 });
+
+	TreeNode* actual = leetcode::deleteNode(root, val);
+
+	EXPECT_EQ(testhelper::treeToVect(actual), testhelper::treeToVect(expected));
 }
 #pragma endregion
