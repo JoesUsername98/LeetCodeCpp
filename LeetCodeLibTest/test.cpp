@@ -750,27 +750,53 @@
 //	EXPECT_EQ(leetcode::canVisitAllRooms(input), false);
 //}
 //#pragma endregion
-#pragma region findCircleNum
-TEST(findCircleNum, one)
+//#pragma region findCircleNum
+//TEST(findCircleNum, one)
+//{
+//	vector<vector<int>> input = { {1,1,0 }, { 1,1,0 }, { 0,0,1 }};
+//	EXPECT_EQ(leetcode::findCircleNum(input), 2);
+//}
+//TEST(findCircleNum, two)
+//{
+//	vector<vector<int>> input = { {1,0,0 }, { 0,1,0 }, { 0,0,1 } };
+//	EXPECT_EQ(leetcode::findCircleNum(input), 3);
+//}
+//#pragma endregion
+//#pragma region minReorder
+//TEST(minReorder, one)
+//{
+//	vector<vector<int>> input = { {0,1} ,{1,3},{2,3},{4,0},{4,5} };
+//	EXPECT_EQ(leetcode::minReorder( 6, input), 3);
+//}
+//TEST(minReorder, two)
+//{
+//	vector<vector<int>> input = { {1,0} ,{1,2}, {3,2}, {3,4} };
+//	EXPECT_EQ(leetcode::minReorder(5, input), 2);
+//}
+//#pragma endregion
+#pragma region calcEquation
+TEST(calcEquation, one)
 {
-	vector<vector<int>> input = { {1,1,0 }, { 1,1,0 }, { 0,0,1 }};
-	EXPECT_EQ(leetcode::findCircleNum(input), 2);
+	vector<vector<string>> equations = { {"a","b"} ,{"b","c"} };
+	vector<double> values = { 2.0,3.0 };
+	vector<vector<string>> queries = { {"a","c" }, { "b","a" }, { "a","e" }, { "a","a" }, { "x","x" } };
+	vector<double> expected = { 6.0, 0.5, -1.0, 1.0, -1.0 };
+	EXPECT_EQ(leetcode::calcEquation(equations, values, queries), expected);
 }
-TEST(findCircleNum, two)
+TEST(calcEquation, two)
 {
-	vector<vector<int>> input = { {1,0,0 }, { 0,1,0 }, { 0,0,1 } };
-	EXPECT_EQ(leetcode::findCircleNum(input), 3);
+	vector<vector<string>> equations = { {"a","b"} ,{"b","c"}, {"bc","cd" }};
+	vector<double> values = { 1.5,2.5,5.0 };
+	vector<vector<string>> queries = { {"a","c" }, { "c","b" }, { "bc","cd" }, { "cd","bc" } };
+	vector<double> expected = { 3.75, 0.4, 5.0, 0.2};
+	EXPECT_EQ(leetcode::calcEquation(equations, values, queries), expected);
 }
-#pragma endregion
-#pragma region findCircleNum
-TEST(minReorder, one)
+TEST(calcEquation, three)
 {
-	vector<vector<int>> input = { {0,1} ,{1,3},{2,3},{4,0},{4,5} };
-	EXPECT_EQ(leetcode::minReorder( 6, input), 3);
-}
-TEST(minReorder, two)
-{
-	vector<vector<int>> input = { {1,0} ,{1,2}, {3,2}, {3,4} };
-	EXPECT_EQ(leetcode::minReorder(5, input), 2);
+	vector<vector<string>> equations = { {"a","b"} };
+	vector<double> values = { 0.5 };
+	vector<vector<string>> queries = { {"a","b" }, { "b","a" }, { "a","c" }, { "x","y" } };
+	vector<double> expected = { 0.5, 2., -1., -1. };
+	EXPECT_EQ(leetcode::calcEquation(equations, values, queries), expected);
 }
 #pragma endregion

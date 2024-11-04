@@ -898,4 +898,50 @@ namespace leetcode
         return count;
 
     }
+
+    double calcEquation_bfs(const map<string, map<string, double>>& adj, const std::string& num, const std::string& den)
+    {
+        if (!adj.contains(num) || !adj.contains(den))
+            return -1.0;
+        
+        unordered_set<string> visited;
+        deque<std::pair<string,double>> q;
+        q.emplace_back(num, 1.0);
+        visited.emplace(num);
+        while (!q.empty())
+        {
+            auto node = q.front().first;
+            auto weight = q.front().second;
+            q.pop_front();
+            if (node == den)
+                return weight;
+
+            const auto nodeInAdjMat = adj.find(node);
+
+            for (auto pair : nodeInAdjMat->second)
+                if (!visited.contains(pair.first))
+                {
+                    q.emplace_back(pair.first, weight * pair.second);
+                    visited.emplace(pair.first);
+                }
+        }
+        return -1;
+    }
+
+    vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries)
+    {
+        map<string,map<string,double>> adj;
+        vector<double> queryAnswer(queries.size(), -1.);
+
+        for (int i = 0; i < equations.size(); ++i) 
+        {
+            adj[equations[i][0]].emplace(equations[i][1], values[i]);
+            adj[equations[i][1]].emplace(equations[i][0], 1.0/values[i]);
+        }
+        
+        for (int i = 0; i < queries.size(); ++i) 
+            queryAnswer[i] =  calcEquation_bfs(adj, queries[i][0], queries[i][1] );
+
+        return queryAnswer;
+    }
 }

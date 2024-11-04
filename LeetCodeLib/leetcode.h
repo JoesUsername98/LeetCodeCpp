@@ -87,4 +87,7 @@ namespace leetcode
 
     extern LEETCODE_API int minReorder(int n, vector<vector<int>>& connections);
 
+    extern LEETCODE_API int minReorder(int n, vector<vector<int>>& connections);
+
+    extern LEETCODE_API vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries);
 }
