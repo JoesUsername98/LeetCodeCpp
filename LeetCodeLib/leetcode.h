@@ -85,4 +85,6 @@ namespace leetcode
 
     extern LEETCODE_API int findCircleNum(vector<vector<int>>& isConnected);
 
+    extern LEETCODE_API int minReorder(int n, vector<vector<int>>& connections);
+
 }

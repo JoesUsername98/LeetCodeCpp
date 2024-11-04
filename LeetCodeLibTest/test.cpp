@@ -762,3 +762,15 @@ TEST(findCircleNum, two)
 	EXPECT_EQ(leetcode::findCircleNum(input), 3);
 }
 #pragma endregion
+#pragma region findCircleNum
+TEST(minReorder, one)
+{
+	vector<vector<int>> input = { {0,1} ,{1,3},{2,3},{4,0},{4,5} };
+	EXPECT_EQ(leetcode::minReorder( 6, input), 3);
+}
+TEST(minReorder, two)
+{
+	vector<vector<int>> input = { {1,0} ,{1,2}, {3,2}, {3,4} };
+	EXPECT_EQ(leetcode::minReorder(5, input), 2);
+}
+#pragma endregion
