@@ -944,4 +944,82 @@ namespace leetcode
 
         return queryAnswer;
     }
+
+    int nearestExit_Dfs(const pair<int, int>& end, const pair<int, int>& start, 
+        const map<pair<int, int>, vector<pair<int, int>>>& adj, set<pair<int, int>>& visited, 
+        const set<pair<int, int>>& allExits)
+    {
+        if( end == start )
+            return visited.size();
+
+        if (allExits.contains(start) )
+            return -1;
+
+        if(!adj.contains(start))
+            return -1;
+        int rtn = INT_MAX;
+        for( const auto& nextCoord : adj.at(start) )
+        {
+            if (visited.contains(nextCoord))
+                continue;
+
+            visited.insert(nextCoord);
+            int minForExit = nearestExit_Dfs(end, nextCoord, adj, visited, allExits);
+            visited.erase(nextCoord);
+
+            if (minForExit < 0)
+                continue;
+
+            rtn = min(rtn, minForExit);
+        }
+        return rtn == INT_MAX ? -1 : rtn;
+    }
+
+    int nearestExit(vector<vector<char>>& maze, vector<int>& entrance) {
+        //Find all exist that are not the entrance
+        // from each of these step through to find the person
+        // return the least steps per path
+
+        map<pair<int, int>, vector<pair<int, int>>> adj;
+        set<pair<int,int>> exits;
+        for (int y = 0; y < maze.size(); ++y)
+        {
+            for (int x = 0; x < maze[y].size(); ++x)
+            {
+                if( maze[y][x] == '+' )
+                    continue;
+
+                if (y - 1 >= 0 && maze[y - 1][x] == '.') // LEFT
+                    adj[make_pair(x, y)].emplace_back(x, y - 1);
+                if (y + 1 < maze.size() && maze[y + 1][x] == '.') //RIGHT
+                    adj[make_pair(x, y)].emplace_back(x, y + 1);
+                if (x - 1 >= 0 && maze[y][x - 1] == '.') // UP
+                    adj[make_pair(x, y)].emplace_back(x - 1, y);
+                if (x + 1 < maze[0].size() && maze[y][x + 1] == '.') // DOWN
+                    adj[make_pair(x, y)].emplace_back(x + 1, y);
+
+                if ( (x == 0 || x == maze[ y ].size() -1 ) && maze[ y ][ x ] == '.' )
+                    exits.emplace( x, y );
+                if ((y == 0 || y == maze.size() - 1) && maze[y][x] == '.')
+                    exits.emplace( x, y);
+            }
+        }
+        if (adj.size() == 0)
+            return -1;
+
+        const auto start = make_pair(entrance[1], entrance[0]);
+        exits.erase(start);
+        int rtn = INT_MAX;
+        for ( const auto & endCoord : exits)
+        {
+            int minForExit = 0;
+            set<pair<int, int>> visited { start };
+            minForExit = nearestExit_Dfs(endCoord, start, adj, visited, exits);
+            if( minForExit < 0 )
+                continue;
+
+            rtn = min( rtn, minForExit);
+        }
+        return rtn == INT_MAX ? -1 : rtn - 1;
+    }
 }

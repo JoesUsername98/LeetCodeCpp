@@ -774,29 +774,82 @@
 //	EXPECT_EQ(leetcode::minReorder(5, input), 2);
 //}
 //#pragma endregion
-#pragma region calcEquation
-TEST(calcEquation, one)
+//#pragma region calcEquation
+//TEST(calcEquation, one)
+//{
+//	vector<vector<string>> equations = { {"a","b"} ,{"b","c"} };
+//	vector<double> values = { 2.0,3.0 };
+//	vector<vector<string>> queries = { {"a","c" }, { "b","a" }, { "a","e" }, { "a","a" }, { "x","x" } };
+//	vector<double> expected = { 6.0, 0.5, -1.0, 1.0, -1.0 };
+//	EXPECT_EQ(leetcode::calcEquation(equations, values, queries), expected);
+//}
+//TEST(calcEquation, two)
+//{
+//	vector<vector<string>> equations = { {"a","b"} ,{"b","c"}, {"bc","cd" }};
+//	vector<double> values = { 1.5,2.5,5.0 };
+//	vector<vector<string>> queries = { {"a","c" }, { "c","b" }, { "bc","cd" }, { "cd","bc" } };
+//	vector<double> expected = { 3.75, 0.4, 5.0, 0.2};
+//	EXPECT_EQ(leetcode::calcEquation(equations, values, queries), expected);
+//}
+//TEST(calcEquation, three)
+//{
+//	vector<vector<string>> equations = { {"a","b"} };
+//	vector<double> values = { 0.5 };
+//	vector<vector<string>> queries = { {"a","b" }, { "b","a" }, { "a","c" }, { "x","y" } };
+//	vector<double> expected = { 0.5, 2., -1., -1. };
+//	EXPECT_EQ(leetcode::calcEquation(equations, values, queries), expected);
+//}
+//#pragma endregion
+#pragma region nearestExit
+TEST(nearestExit, one)
 {
-	vector<vector<string>> equations = { {"a","b"} ,{"b","c"} };
-	vector<double> values = { 2.0,3.0 };
-	vector<vector<string>> queries = { {"a","c" }, { "b","a" }, { "a","e" }, { "a","a" }, { "x","x" } };
-	vector<double> expected = { 6.0, 0.5, -1.0, 1.0, -1.0 };
-	EXPECT_EQ(leetcode::calcEquation(equations, values, queries), expected);
+	vector<vector<char>> maze = { {'+','+','.','+' }, { '.','.','.','+' }, { '+','+','+','.' } };
+	vector<int> entrance = { 1, 2 };
+	EXPECT_EQ(leetcode::nearestExit(maze, entrance), 1);
 }
-TEST(calcEquation, two)
+TEST(nearestExit, two)
 {
-	vector<vector<string>> equations = { {"a","b"} ,{"b","c"}, {"bc","cd" }};
-	vector<double> values = { 1.5,2.5,5.0 };
-	vector<vector<string>> queries = { {"a","c" }, { "c","b" }, { "bc","cd" }, { "cd","bc" } };
-	vector<double> expected = { 3.75, 0.4, 5.0, 0.2};
-	EXPECT_EQ(leetcode::calcEquation(equations, values, queries), expected);
+	vector<vector<char>> maze = { {'+','+','+'} ,{'.','.','.' }, { '+','+','+' } };
+	vector<int> entrance = { 1, 0 };
+	EXPECT_EQ(leetcode::nearestExit(maze, entrance), 2);
 }
-TEST(calcEquation, three)
+TEST(nearestExit, three)
 {
-	vector<vector<string>> equations = { {"a","b"} };
-	vector<double> values = { 0.5 };
-	vector<vector<string>> queries = { {"a","b" }, { "b","a" }, { "a","c" }, { "x","y" } };
-	vector<double> expected = { 0.5, 2., -1., -1. };
-	EXPECT_EQ(leetcode::calcEquation(equations, values, queries), expected);
+	vector<vector<char>> maze = { {'.','+' } };
+	vector<int> entrance = { 0, 0 };
+	EXPECT_EQ(leetcode::nearestExit(maze, entrance), -1);
+}
+TEST(nearestExit, four)
+{
+	vector<vector<char>> maze = { {'.','+','.' } };
+	vector<int> entrance = { 0, 2 };
+	EXPECT_EQ(leetcode::nearestExit(maze, entrance), -1);
+}
+TEST(nearestExit, five)
+{
+	vector<vector<char>> maze = { 
+		{'+','.','+','+','+','+','+'},
+		{'+','.','+','.','.','.','+'},
+		{'+','.','+','.','+','.','+'},
+		{'+','.','.','.','.','.','+'}, //3,3 -> 2,3 : 4,3 : 3,2
+		{'+','+','+','+','.','+','.'} };
+	vector<int> entrance = { 0, 1 };
+	EXPECT_EQ(leetcode::nearestExit(maze, entrance), 7);
+}
+TEST(nearestExit, six) // 2.4s YIKEs
+{
+	vector<vector<char>> maze = {
+	{'.','+','+','+','.','.','.','+','+'},
+	{'.','.','+','.','+','.','+','+','.'},
+	{'.','.','+','.','.','.','.','.','.'},
+	{'.','+','.','.','+','+','.','+','.'},
+	{'.','.','.','.','.','.','.','+','.'},
+	{'.','.','.','.','.','.','.','.','.'},
+	{'.','.','.','+','.','.','.','.','.'},
+	{'.','.','.','.','.','.','.','.','+'},
+	{'+','.','.','.','+','.','.','.','.'}
+	};
+	vector<int> entrance = { 5, 6 };
+	EXPECT_EQ(leetcode::nearestExit(maze, entrance), 2);
 }
 #pragma endregion
