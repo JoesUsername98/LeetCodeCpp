@@ -92,4 +92,6 @@ namespace leetcode
     extern LEETCODE_API vector<double> calcEquation(vector<vector<string>>& equations, vector<double>& values, vector<vector<string>>& queries);
 
     extern LEETCODE_API int nearestExit(vector<vector<char>>& maze, vector<int>& entrance);
+
+    extern LEETCODE_API int orangesRotting(vector<vector<int>>& grid);
 }

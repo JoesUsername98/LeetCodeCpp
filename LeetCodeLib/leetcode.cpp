@@ -1060,4 +1060,57 @@ namespace leetcode
 
         return -1;
     }
+
+    // each cell
+        // if rotten ( cell > 1 )
+            // set adjacent to rotting (time + 2) and set has rotten flag
+
+    // if rotten flag is false
+        // return time
+ 
+    int orangesRotting(vector<vector<int>>& grid) 
+    {
+        int time = 0;
+        bool rotted = false;
+        do
+        {
+            rotted = false;
+            for (int y = 0; y < grid.size(); ++y)
+                for (int x = 0; x < grid[0].size(); ++x)
+                {
+                    if (grid[y][x] == time + 2) // rotting 
+                    {
+                        if (x > 0 && grid[y][x - 1] == 1) // rot left 
+                        {
+                            grid[y][x - 1] = time + 3;
+                            rotted = true;
+                        }
+                        if (x < grid[0].size() - 1 && grid[y][x + 1] == 1) // rot right 
+                        {
+                            grid[y][x + 1] = time + 3;
+                            rotted = true;
+                        }
+                        if (y > 0 && grid[y-1][x] == 1) // rot up 
+                        {
+                            grid[y-1][x] = time + 3;
+                            rotted = true;
+                        }
+                        if (y < grid.size() - 1 && grid[y+1][x] == 1) // rot down 
+                        {
+                            grid[y+1][x] = time + 3;
+                            rotted = true;
+                        }
+                    }
+                }
+
+            ++time;
+        } while (rotted);
+
+        for (const auto& row : grid)
+            for (const auto& cell : row)
+                if (cell == 1)
+                    return -1;
+
+        return time - 1;
+    }
 }

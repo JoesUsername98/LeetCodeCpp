@@ -265,7 +265,7 @@
 //TEST(decodeString, one)
 //{
 //	const std::string expected = "aaabcbc";
-//	std::string s = "3[a]2[bc]";
+//	std::string s = "3{a]2{bc]";
 //	const auto actual = leetcode::decodeString(s);
 //	EXPECT_EQ(expected, actual);
 //	EXPECT_TRUE(true);
@@ -273,7 +273,7 @@
 //TEST(decodeString, two)
 //{
 //	const std::string expected = "accaccacc";
-//	std::string s = "3[a2[c]]";
+//	std::string s = "3{a2{c]]";
 //	const auto actual = leetcode::decodeString(s);
 //	EXPECT_EQ(expected, actual);
 //	EXPECT_TRUE(true);
@@ -281,7 +281,7 @@
 //TEST(decodeString, three)
 //{
 //	const std::string expected = "abcabccdcdcdef";
-//	std::string s = "2[abc]3[cd]ef";
+//	std::string s = "2{abc]3{cd]ef";
 //	const auto actual = leetcode::decodeString(s);
 //	EXPECT_EQ(expected, actual);
 //	EXPECT_TRUE(true);
@@ -800,56 +800,83 @@
 //	EXPECT_EQ(leetcode::calcEquation(equations, values, queries), expected);
 //}
 //#pragma endregion
-#pragma region nearestExit
-TEST(nearestExit, one)
+//#pragma region nearestExit
+//TEST(nearestExit, one)
+//{
+//	vector<vector<char>> maze = { {'+','+','.','+' }, { '.','.','.','+' }, { '+','+','+','.' } };
+//	vector<int> entrance = { 1, 2 };
+//	EXPECT_EQ(leetcode::nearestExit(maze, entrance), 1);
+//}
+//TEST(nearestExit, two)
+//{
+//	vector<vector<char>> maze = { {'+','+','+'} ,{'.','.','.' }, { '+','+','+' } };
+//	vector<int> entrance = { 1, 0 };
+//	EXPECT_EQ(leetcode::nearestExit(maze, entrance), 2);
+//}
+//TEST(nearestExit, three)
+//{
+//	vector<vector<char>> maze = { {'.','+' } };
+//	vector<int> entrance = { 0, 0 };
+//	EXPECT_EQ(leetcode::nearestExit(maze, entrance), -1);
+//}
+//TEST(nearestExit, four)
+//{
+//	vector<vector<char>> maze = { {'.','+','.' } };
+//	vector<int> entrance = { 0, 2 };
+//	EXPECT_EQ(leetcode::nearestExit(maze, entrance), -1);
+//}
+//TEST(nearestExit, five)
+//{
+//	vector<vector<char>> maze = { 
+//		{'+','.','+','+','+','+','+'},
+//		{'+','.','+','.','.','.','+'},
+//		{'+','.','+','.','+','.','+'},
+//		{'+','.','.','.','.','.','+'}, //3,3 -> 2,3 : 4,3 : 3,2
+//		{'+','+','+','+','.','+','.'} };
+//	vector<int> entrance = { 0, 1 };
+//	EXPECT_EQ(leetcode::nearestExit(maze, entrance), 7);
+//}
+//TEST(nearestExit, six) // 2.4s YIKEs
+//{
+//	vector<vector<char>> maze = {
+//	{'.','+','+','+','.','.','.','+','+'},
+//	{'.','.','+','.','+','.','+','+','.'},
+//	{'.','.','+','.','.','.','.','.','.'},
+//	{'.','+','.','.','+','+','.','+','.'},
+//	{'.','.','.','.','.','.','.','+','.'},
+//	{'.','.','.','.','.','.','.','.','.'},
+//	{'.','.','.','+','.','.','.','.','.'},
+//	{'.','.','.','.','.','.','.','.','+'},
+//	{'+','.','.','.','+','.','.','.','.'}
+//	};
+//	vector<int> entrance = { 5, 6 };
+//	EXPECT_EQ(leetcode::nearestExit(maze, entrance), 2);
+//}
+//#pragma endregion
+#pragma region orangesRotting
+TEST(orangesRotting, one)
 {
-	vector<vector<char>> maze = { {'+','+','.','+' }, { '.','.','.','+' }, { '+','+','+','.' } };
-	vector<int> entrance = { 1, 2 };
-	EXPECT_EQ(leetcode::nearestExit(maze, entrance), 1);
-}
-TEST(nearestExit, two)
-{
-	vector<vector<char>> maze = { {'+','+','+'} ,{'.','.','.' }, { '+','+','+' } };
-	vector<int> entrance = { 1, 0 };
-	EXPECT_EQ(leetcode::nearestExit(maze, entrance), 2);
-}
-TEST(nearestExit, three)
-{
-	vector<vector<char>> maze = { {'.','+' } };
-	vector<int> entrance = { 0, 0 };
-	EXPECT_EQ(leetcode::nearestExit(maze, entrance), -1);
-}
-TEST(nearestExit, four)
-{
-	vector<vector<char>> maze = { {'.','+','.' } };
-	vector<int> entrance = { 0, 2 };
-	EXPECT_EQ(leetcode::nearestExit(maze, entrance), -1);
-}
-TEST(nearestExit, five)
-{
-	vector<vector<char>> maze = { 
-		{'+','.','+','+','+','+','+'},
-		{'+','.','+','.','.','.','+'},
-		{'+','.','+','.','+','.','+'},
-		{'+','.','.','.','.','.','+'}, //3,3 -> 2,3 : 4,3 : 3,2
-		{'+','+','+','+','.','+','.'} };
-	vector<int> entrance = { 0, 1 };
-	EXPECT_EQ(leetcode::nearestExit(maze, entrance), 7);
-}
-TEST(nearestExit, six) // 2.4s YIKEs
-{
-	vector<vector<char>> maze = {
-	{'.','+','+','+','.','.','.','+','+'},
-	{'.','.','+','.','+','.','+','+','.'},
-	{'.','.','+','.','.','.','.','.','.'},
-	{'.','+','.','.','+','+','.','+','.'},
-	{'.','.','.','.','.','.','.','+','.'},
-	{'.','.','.','.','.','.','.','.','.'},
-	{'.','.','.','+','.','.','.','.','.'},
-	{'.','.','.','.','.','.','.','.','+'},
-	{'+','.','.','.','+','.','.','.','.'}
+	vector<vector<int>> grid = { 
+		{2,1,1} ,
+		{1,1,0} ,
+		{0,1,1} 
 	};
-	vector<int> entrance = { 5, 6 };
-	EXPECT_EQ(leetcode::nearestExit(maze, entrance), 2);
+	EXPECT_EQ(leetcode::orangesRotting(grid), 4);
+}
+TEST(orangesRotting, two)
+{
+	vector<vector<int>> grid = {	
+		{2,1,1} ,
+		{0,1,1},
+		{1,0,1} 
+	};
+	EXPECT_EQ(leetcode::orangesRotting(grid), -1);
+}
+TEST(orangesRotting, three)
+{
+	vector<vector<int>> grid = {
+		{1,2}
+	};
+	EXPECT_EQ(leetcode::orangesRotting(grid), 1);
 }
 #pragma endregion
