@@ -1028,32 +1028,36 @@ namespace leetcode
         // from each of these step through to find the person
         // return the least steps per path
         const auto start = make_pair(entrance[1], entrance[0]);
-        queue<pair<pair<int, int>, int>> q;
-        q.emplace(start, 0);
+        queue<pair<int, int>> q;
+        q.emplace(start);
+        int moves = 0;
         while (!q.empty())
         {
-            const auto currPosition = q.front().first;
-            const auto length = q.front().second;
-            
-            //Check exits
-            if ((currPosition.first == 0 || currPosition.first == maze[0].size() - 1 ) && start != currPosition)
-                return length;
-            if ((currPosition.second == 0 || currPosition.second == maze.size() - 1 ) && start != currPosition)
-                return length;
+            int sz = q.size(); // Size at the level of steps
 
-            maze[currPosition.second][currPosition.first] = 'v'; // mark visited
-            q.pop();
+            while (sz--)
+            {
+                const auto currPosition = q.front();
+                maze[currPosition.second][currPosition.first] = 'v'; // mark visited
+                q.pop();
+                //Check exits
+                if ((currPosition.first == 0 || currPosition.first == maze[0].size() - 1) && start != currPosition)
+                    return moves;
+                if ((currPosition.second == 0 || currPosition.second == maze.size() - 1) && start != currPosition)
+                    return moves;
 
-            if (currPosition.second - 1 >= 0 && maze[currPosition.second - 1][currPosition.first] == '.') // LEFT
-                q.emplace(make_pair(currPosition.first, currPosition.second - 1), length + 1);
-            if (currPosition.second + 1 < maze.size() && maze[currPosition.second + 1][currPosition.first] == '.') //RIGHT
-                q.emplace(make_pair(currPosition.first, currPosition.second + 1), length + 1);
-            if (currPosition.first - 1 >= 0 && maze[currPosition.second][currPosition.first - 1] == '.') // UP
-                q.emplace(make_pair(currPosition.first - 1, currPosition.second), length + 1);
-            if (currPosition.first + 1 < maze[0].size() && maze[currPosition.second][currPosition.first + 1] == '.') // DOWN
-                q.emplace(make_pair(currPosition.first + 1, currPosition.second), length + 1);
+                if (currPosition.second - 1 >= 0 && maze[currPosition.second - 1][currPosition.first] == '.') // LEFT
+                    q.emplace(make_pair(currPosition.first, currPosition.second - 1));
+                if (currPosition.second + 1 < maze.size() && maze[currPosition.second + 1][currPosition.first] == '.') //RIGHT
+                    q.emplace(make_pair(currPosition.first, currPosition.second + 1));
+                if (currPosition.first - 1 >= 0 && maze[currPosition.second][currPosition.first - 1] == '.') // UP
+                    q.emplace(make_pair(currPosition.first - 1, currPosition.second));
+                if (currPosition.first + 1 < maze[0].size() && maze[currPosition.second][currPosition.first + 1] == '.') // DOWN
+                    q.emplace(make_pair(currPosition.first + 1, currPosition.second));
+            }
+            ++moves;
         }
 
-        return - 1;
+        return -1;
     }
 }
