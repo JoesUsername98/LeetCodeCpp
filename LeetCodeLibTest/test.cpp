@@ -853,30 +853,47 @@
 //	EXPECT_EQ(leetcode::nearestExit(maze, entrance), 2);
 //}
 //#pragma endregion
-#pragma region orangesRotting
-TEST(orangesRotting, one)
+//#pragma region orangesRotting
+//TEST(orangesRotting, one)
+//{
+//	vector<vector<int>> grid = { 
+//		{2,1,1} ,
+//		{1,1,0} ,
+//		{0,1,1} 
+//	};
+//	EXPECT_EQ(leetcode::orangesRotting(grid), 4);
+//}
+//TEST(orangesRotting, two)
+//{
+//	vector<vector<int>> grid = {	
+//		{2,1,1} ,
+//		{0,1,1},
+//		{1,0,1} 
+//	};
+//	EXPECT_EQ(leetcode::orangesRotting(grid), -1);
+//}
+//TEST(orangesRotting, three)
+//{
+//	vector<vector<int>> grid = {
+//		{1,2}
+//	};
+//	EXPECT_EQ(leetcode::orangesRotting(grid), 1);
+//}
+//#pragma endregion
+#pragma region findKthLargest
+TEST(findKthLargest, one)
 {
-	vector<vector<int>> grid = { 
-		{2,1,1} ,
-		{1,1,0} ,
-		{0,1,1} 
-	};
-	EXPECT_EQ(leetcode::orangesRotting(grid), 4);
+	vector<int> input = { 3,2,1,5,6,4 };
+	EXPECT_EQ(leetcode::findKthLargest(input, 2), 5);
 }
-TEST(orangesRotting, two)
+TEST(findKthLargest, two)
 {
-	vector<vector<int>> grid = {	
-		{2,1,1} ,
-		{0,1,1},
-		{1,0,1} 
-	};
-	EXPECT_EQ(leetcode::orangesRotting(grid), -1);
+	vector<int> input = { 3,2,3,1,2,4,5,5,6 };
+	EXPECT_EQ(leetcode::findKthLargest(input, 4), 4);
 }
-TEST(orangesRotting, three)
+TEST(findKthLargest, three)
 {
-	vector<vector<int>> grid = {
-		{1,2}
-	};
-	EXPECT_EQ(leetcode::orangesRotting(grid), 1);
+	vector<int> input = { 3,2,3,1,2,4,5,5,6 };
+	EXPECT_EQ(leetcode::findKthLargest(input, 4), 4);
 }
 #pragma endregion

@@ -1113,4 +1113,42 @@ namespace leetcode
 
         return time - 1;
     }
+
+    // My Attempt. Slow Time 9%. Mem 11.83%
+    //int findKthLargest(vector<int>& nums, int k) 
+    //{
+    //    map<int, int> numOccur;
+    //    int kRev = nums.size() - k;
+
+
+    //    for (const auto& num : nums)
+    //        numOccur[num]++;
+
+    //    for (const auto& [num, occur] : numOccur)
+    //    {
+    //        if (occur > kRev)
+    //            return num;
+
+    //        kRev -= occur;
+    //    }
+
+    //    return -1;
+    //}
+    //int findKthLargest(std::vector<int>& nums, int k) {
+    //    int n = nums.size();
+    //    priority_queue<int, vector<int>, greater<int>> min_heap(nums.begin(), nums.begin() + k);
+
+    //    for (int i = k; i < n; i++) {
+    //        if (nums[i] > min_heap.top()) {
+    //            min_heap.pop();
+    //            min_heap.push(nums[i]);
+    //        }
+    //    }
+    //    
+    //    return min_heap.top();
+    //}
+    int findKthLargest(vector<int>& nums, int k) {
+        nth_element(nums.begin(), nums.end() - k, nums.end());
+        return nums[nums.size() - k];
+    }
 }
